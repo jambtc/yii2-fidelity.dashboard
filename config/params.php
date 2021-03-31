@@ -11,6 +11,7 @@ return [
     'company' => 'txLab.it',
     'supportEmail' => $secrets['mail_username'],
     'encryptionFile' => dirname(__FILE__).'/encrypt.json',
+    'icon-framework' => 'fa',  // Font Awesome Icon framework
 
     /**
      * Set the password reset token expiration time.
