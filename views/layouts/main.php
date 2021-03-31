@@ -7,8 +7,10 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\AdminLteAsset;
 
 AppAsset::register($this);
+AdminLteAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
