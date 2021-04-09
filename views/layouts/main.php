@@ -23,7 +23,7 @@ AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
+<body class="da rk-mode">
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -38,11 +38,12 @@ AdminLteAsset::register($this);
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="float-left">&copy; <?= Yii::$app->params['company'] ?> <?= date('Y') ?></p>
 
-        <p class="float-right"><?= Yii::powered() ?></p>
+<footer class="footer">
+    <strong>Copyright © <?= date('Y') ?> <a href="https://<?= Yii::$app->params['website'] ?>"><?= Yii::$app->params['company'] ?></a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <?= Yii::powered() ?>
     </div>
 </footer>
 

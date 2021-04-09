@@ -4,7 +4,6 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
 use kartik\icons\Icon;
-
 Icon::map($this);
 
 $items[] = ['label' => Icon::show('home') . 'Home', 'url' => ['/site/index']];
@@ -18,7 +17,7 @@ if (Yii::$app->user->isGuest)
     $items[] = [
             'label' => Icon::show('tasks') . Yii::t('app','Manage Payments'),
             'items' => [
-                ['label' => Icon::show('star') . Yii::t('app','Invoices'), 'url' => ['/tokens/index']],
+                ['label' => Icon::show('star') . Yii::t('app','Invoices'), 'url' => ['/invoices/index']],
                 ['label' => Icon::show('comment') . Yii::t('app','Notifications'), 'url' => ['/notifications/index']],
             ],
         ];
@@ -92,7 +91,7 @@ if (Yii::$app->user->isGuest)
 }
 
 NavBar::begin([
-    'brandLabel' => Html::img('@web/css/images/logo.png', ['alt'=>Yii::$app->name,'style'=>'height: 50px; width: 50px; top: 2.5px; left: 45px; position: absolute;']),
+    'brandLabel' => Html::img('@web/css/images/logo.png', ['alt'=>Yii::$app->name,'style'=>'height: 50px; width: 50px; top: 2.5px; position: absolute;']),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => ['class' => 'navbar-expand-lg navbar-light bg-light shadow'],
     'innerContainerOptions' => [

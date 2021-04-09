@@ -7,6 +7,9 @@ $this->title = Yii::$app->name;
 if (Yii::$app->user->isGuest){
     echo $this->render('home');
 } else {
-    echo $this->render('dashboard');
+    echo $this->render('dashboard', [
+        'dataProvider'=>$dataProvider,
+        'userRequestsProvider' => $userRequestsProvider,
+    ]);
 }
 ?>

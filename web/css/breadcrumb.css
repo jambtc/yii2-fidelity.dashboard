@@ -1,0 +1,149 @@
+.breadcrumb {
+
+    height: 36px;
+
+    padding: 0;
+
+    line-height: 36px;
+
+    list-style: none;
+
+    background-color: #D5DAE1
+
+}
+
+
+
+.breadcrumb li, .breadcrumb li a, .breadcrumb li span {
+
+    display: inline-block;
+
+    vertical-align: top
+
+}
+
+.breadcrumb li:not(:first-child) {
+
+    margin-left: 0px
+
+}
+
+.breadcrumb li+li:before {
+
+    padding: 0;
+
+    content: ""
+
+}
+
+.breadcrumb li span {
+
+    padding: 0 10px
+
+}
+
+.breadcrumb li a, .breadcrumb li:not(:first-child) span {
+
+    height: 36px;
+
+    padding: 0 10px 0 25px;
+
+    line-height: 36px
+
+}
+
+.breadcrumb li:first-child a {
+
+    padding: 0 10px
+
+}
+
+.breadcrumb li a {
+
+    position: relative;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    background-color: #DC3545;
+
+    border: 1px solid #FFFF00
+
+}
+
+.breadcrumb li:first-child a {
+
+    padding-left: 10px
+
+}
+
+.breadcrumb li a:after, .breadcrumb li a:before {
+
+    position: absolute;
+
+    top: -1px;
+
+    width: 0;
+
+    height: 0;
+
+    content: '';
+
+    border-top: 18px solid transparent;
+
+    border-bottom: 18px solid transparent
+
+}
+
+.breadcrumb li a:before {
+
+    right: -10px;
+
+    z-index: 3;
+
+    border-left-color: #DF4454;
+
+    border-left-style: solid;
+
+    border-left-width: 11px
+
+}
+
+.breadcrumb li a:after {
+
+    right: -11px;
+
+    z-index: 2;
+
+    border-left: 11px solid #FFFF00
+
+}
+
+.breadcrumb li a:focus, .breadcrumb li a:hover {
+
+    background-color: #BD2130;
+
+    border: 1px solid #BD2130
+
+}
+
+.breadcrumb li a:focus:before, .breadcrumb li a:hover:before {
+
+    border-left-color: #BD2130
+
+}
+
+.breadcrumb li a:active {
+
+    background-color: #2494be;
+
+    border: 1px solid #2494be
+
+}
+
+.breadcrumb li a:active:after, .breadcrumb li a:active:before {
+
+    border-left-color: #2494be
+
+}

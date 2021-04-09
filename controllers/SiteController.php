@@ -12,6 +12,10 @@ use app\models\SignupForm;
 use app\models\Users;
 use app\components\WebApp;
 
+use app\models\Invoices;
+use app\models\search\InvoicesSearch;
+use yii\data\ActiveDataProvider;
+
 define ('NONCE_TIMEOUT', 24 * 60 * 60); // 1 day
 
 class SiteController extends Controller
@@ -65,7 +69,36 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new InvoicesSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->setPagination(['pageSize' => 10]);
+		$dataProvider->sort->defaultOrder = ['invoice_timestamp' => SORT_DESC];
+
+        $userRequestsProvider = null;
+        if (Yii::$app->user->id != 1){
+
+            $dataProvider->query->andWhere(['=','id_user', Yii::$app->user->id]);
+        } else {
+            $query = Users::find()->where(['status_activation_code' => 0]);
+            $userRequestsProvider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 5,
+                ],
+                'sort' => [
+                    'defaultOrder' => [
+                        'id' => SORT_DESC,
+                    ]
+                ],
+            ]);
+        }
+
+
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'userRequestsProvider' => $userRequestsProvider,
+        ]);
     }
 
     /**
@@ -166,8 +199,8 @@ class SiteController extends Controller
         // compare the two signatures
         if (strcmp($sign, $_GET['sign']) == 0){
             // echo "<pre>".print_r('sono uguali',true)."</pre>";
-            $user->activation_code = '';
-            $user->accessToken = '';
+            $user->activation_code = '0';
+            $user->accessToken = '0';
             $user->status_activation_code = 1;
             $user->save();
             // exit;
