@@ -7,6 +7,9 @@ use app\models\Users;
 use app\components\Rows;
 use app\components\WebApp;
 
+if ($userRequestsProvider->getTotalCount() == 0)
+    return true;
+
 ?>
 <div class="card bg-secondary px-3">
     <div class="card-header border-transparent">
@@ -57,10 +60,4 @@ use app\components\WebApp;
         ],
     ]); ?>
     </div>
-    <!-- /.card-body -->
-    <!-- <div class="card-footer clearfix">
-    <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-    </div> -->
-    <!-- /.card-footer -->
 </div>

@@ -21,7 +21,6 @@ class m210409_162903_create_table_merchants extends Migration
             'cap' => $this->string(10)->defaultValue(NULL),
             'city' => $this->string(255)->defaultValue(NULL),
             'country' => $this->string(255)->defaultValue(NULL),
-
             'wallet_address' => $this->string(500)->defaultValue(NULL),
             'derivedKey' => $this->string(500)->defaultValue(NULL),
             'privateKey' => $this->string(500)->defaultValue(NULL),

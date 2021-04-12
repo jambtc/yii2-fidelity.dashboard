@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($user->username, Url::toRoute(['/merchants/view', 'id' => $id]),
                             [
                                 'class' => 'btn btn-success center-block text-truncate',
-                                'style' => 'width: 150px;'
+                                'style' => 'max-width: 250px;'
                             ]
                         );
                     },

@@ -97,4 +97,8 @@ class Merchants extends \yii\db\ActiveRecord
 
         return parent::beforeSave($insert);
     }
+
+    public function getIdByUser($id) {
+        return self::find(['id_user'=>$id])->one()->id;
+    }
 }

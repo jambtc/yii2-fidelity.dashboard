@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'email') ?>
 
-    <?php // echo $form->field($model, 'corporate') ?>
+    <?php // echo $form->field($model, 'is_merchant') ?>
 
     <?php // echo $form->field($model, 'denomination') ?>
 
