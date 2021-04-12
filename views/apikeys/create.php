@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Invoices */
+/* @var $model app\models\Apikeys */
 
-$this->title = Yii::t('app', 'Create Invoices');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Invoices'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Apikeys');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Apikeys'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="invoices-create">
+<div class="apikeys-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

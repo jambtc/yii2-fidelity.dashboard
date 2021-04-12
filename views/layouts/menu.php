@@ -39,7 +39,7 @@ if (Yii::$app->user->isGuest)
                 'items' => [
                     ['label' => Icon::show('users') . Yii::t('app','Users'), 'url' => ['/users/index']],
                     ['label' => Icon::show('eye') . Yii::t('app','Subscriptions'), 'url' => ['/subscriptions/index']],
-                    ['label' => Icon::show('key') . Yii::t('app','Api Keys'), 'url' => ['/apiconnections/index']],
+                    ['label' => Icon::show('key') . Yii::t('app','Api Keys'), 'url' => ['/apikeys/index']],
                 ],
             ];
 
@@ -75,6 +75,9 @@ if (Yii::$app->user->isGuest)
                 '',
                 (Yii::$app->user->id == 1) ?
                     (['label' => Icon::show('pencil-ruler') . Yii::t('app','Rules Engine'), 'url' => ['/rulesengine/index']]) :
+                '',
+                (Yii::$app->user->id != 1) ?
+                    (['label' => Icon::show('key') . Yii::t('app','Api keys'), 'url' => ['/apikeys/index']]) :
                 '',
                 ['label' => Icon::show('user') . Yii::t('app','User account'), 'url' => ['/users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]]
             ],
