@@ -110,7 +110,7 @@ class SignupForm extends Model
             $user->first_name = $this->first_name;
             $user->last_name = $this->last_name;
             $user->email = $this->username;
-            $user->corporate = 1;
+            $user->is_merchant = 0;
             $user->denomination = $this->denomination;
             $user->tax_code = $this->tax_code;
             $user->address = $this->address;

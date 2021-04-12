@@ -42,6 +42,14 @@ use app\components\WebApp;
                     return $status[$data->status_activation_code];
                     },
             ],
+            [
+                'attribute' => 'is_merchant',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $status = [0=>Yii::t('app','Not Merchant'),1=>Yii::t('app','Is Merchant')];
+                    return $status[$data->is_merchant];
+                    },
+            ],
             'first_name',
             'last_name',
             'email:email',

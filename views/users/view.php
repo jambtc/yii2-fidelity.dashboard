@@ -30,10 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php if ($model->status_activation_code == 0) : ?>
 
-            <?= Html::a(Yii::t('app', 'Subscribe'), ['subscribe', 'id' => WebApp::encrypt($model->id)], [
+            <?= Html::a(Yii::t('app', 'Make him merchant'), ['subscribe', 'id' => WebApp::encrypt($model->id)], [
                 'class' => 'btn btn-warning',
                 'data' => [
-                    'confirm' => Yii::t('app', 'Are you sure you want to subscribe this user?'),
+                    'confirm' => Yii::t('app', 'Are you sure you want to make a merchant this user?'),
                     'method' => 'post',
                 ],
             ]) ?>
@@ -69,7 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'first_name',
             'last_name',
             'email:email',
-            // 'corporate',
+            // 'is_merchant',
+            [
+                'attribute' => 'is_merchant',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $status = [0=>Yii::t('app','Not Merchant'),1=>Yii::t('app','Is Merchant')];
+                    return $status[$data->is_merchant];
+                    },
+            ],
             'denomination',
             'tax_code',
             'address',

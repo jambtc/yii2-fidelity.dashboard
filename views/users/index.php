@@ -60,7 +60,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'first_name',
             'last_name',
             'email:email',
-            //'corporate',
+            // 'is_merchant',
+            [
+                'attribute' => 'is_merchant',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $status = [0=>Yii::t('app','Not Merchant'),1=>Yii::t('app','Is Merchant')];
+                    return $status[$data->is_merchant];
+                    },
+            ],
             'denomination',
             //'tax_code',
             //'address',

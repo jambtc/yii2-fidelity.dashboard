@@ -79,7 +79,7 @@ class SiteController extends Controller
 
             $dataProvider->query->andWhere(['=','id_user', Yii::$app->user->id]);
         } else {
-            $query = Users::find()->where(['status_activation_code' => 0]);
+            $query = Users::find()->where(['is_merchant' => 0]);
             $userRequestsProvider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [

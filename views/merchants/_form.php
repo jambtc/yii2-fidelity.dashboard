@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\WebApp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Merchants */
@@ -25,6 +26,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
+
+    <?php
+    if (!$model->isNewRecord){
+        $model->derivedKey = WebApp::decrypt($model->derivedKey);
+    }
+    ?>
 
     <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true]) ?>
     <div class="invalid-feedback alert alert-danger" id="seed-error" ></div>

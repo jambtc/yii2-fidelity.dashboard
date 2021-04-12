@@ -17,7 +17,7 @@ use Yii;
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string|null $email
- * @property int|null $corporate
+ * @property int|null $is_merchant
  * @property string|null $denomination
  * @property string|null $tax_code
  * @property string|null $address
@@ -44,7 +44,7 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password'], 'required'],
-            [['status_activation_code', 'corporate'], 'integer'],
+            [['status_activation_code', 'is_merchant'], 'integer'],
             [['username', 'password', 'authKey', 'accessToken', 'first_name', 'last_name', 'email', 'denomination', 'address', 'city', 'country'], 'string', 'max' => 255],
             [['activation_code'], 'string', 'max' => 50],
             [['tax_code'], 'string', 'max' => 20],
@@ -69,7 +69,7 @@ class Users extends \yii\db\ActiveRecord
             'first_name' => Yii::t('app', 'First Name'),
             'last_name' => Yii::t('app', 'Last Name'),
             'email' => Yii::t('app', 'Email'),
-            'corporate' => Yii::t('app', 'Corporate'),
+            'is_merchant' => Yii::t('app', 'Is Merchant'),
             'denomination' => Yii::t('app', 'Denomination'),
             'tax_code' => Yii::t('app', 'Tax Code'),
             'address' => Yii::t('app', 'Address'),

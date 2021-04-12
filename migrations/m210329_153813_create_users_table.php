@@ -23,7 +23,7 @@ class m210329_153813_create_users_table extends Migration
             'first_name' => $this->string(255)->defaultValue(NULL),
             'last_name' => $this->string(255)->defaultValue(NULL),
             'email' => $this->string(255)->defaultValue(NULL),
-            'corporate' => $this->boolean()->defaultValue(0),
+            'is_merchant' => $this->boolean()->defaultValue(0),
             'denomination' => $this->string(255)->defaultValue(NULL),
             'tax_code' => $this->string(50)->defaultValue(NULL),
             'address' => $this->string(255)->defaultValue(NULL),

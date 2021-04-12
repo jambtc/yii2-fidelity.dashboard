@@ -17,7 +17,7 @@ class UsersSearch extends Users
     public function rules()
     {
         return [
-            [['id', 'status_activation_code', 'corporate'], 'integer'],
+            [['id', 'status_activation_code', 'is_merchant'], 'integer'],
             [['username', 'password', 'activation_code', 'authKey', 'accessToken', 'first_name', 'last_name', 'email', 'denomination', 'tax_code', 'address', 'cap', 'city', 'country'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class UsersSearch extends Users
         $query->andFilterWhere([
             'id' => $this->id,
             'status_activation_code' => $this->status_activation_code,
-            'corporate' => $this->corporate,
+            'is_merchant' => $this->is_merchant,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])

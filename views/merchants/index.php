@@ -47,10 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cap',
             //'city',
             //'country',
-            'derivedKey',
+            'wallet_address',
+            // 'derivedKey',
             //'privateKey',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

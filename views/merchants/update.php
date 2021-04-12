@@ -13,10 +13,12 @@ $this->title = Yii::t('app', 'Update Merchant: {name}', [
     'name' => $model->id,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Merchants'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => WebApp::encrypt($model->id), 'url' => ['view', 'id' => WebApp::encrypt($model->id)]];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => WebApp::encrypt($model->id)]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
 include ('_js.php');
+
+
 
 ?>
 <div class="merchants-update">

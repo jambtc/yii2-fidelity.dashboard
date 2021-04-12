@@ -127,6 +127,8 @@ class UsersController extends Controller
         }
 
         if ($merchant->save()){
+            $user->is_merchant = 1;
+            $user->save();
             $this->sendMerchantActivationEmail($user);
             return $this->redirect(['merchants/index']);
         } else {
