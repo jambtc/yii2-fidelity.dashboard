@@ -8,6 +8,8 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Create Stores');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Stores'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+include ('_js.php');
 ?>
 <div class="stores-create">
 

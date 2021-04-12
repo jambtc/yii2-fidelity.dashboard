@@ -61,6 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
             ],
             'bps_storeid',
+            'wallet_address',
+            // 'derivedKey',
+            //'privateKey',
 
             //['class' => 'yii\grid\ActionColumn'],
         ],

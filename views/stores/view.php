@@ -51,6 +51,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'denomination',
             'bps_storeid',
+            'wallet_address',
+            // 'derivedKey',
+            // 'privateKey',
         ],
     ]) ?>
 

@@ -17,6 +17,9 @@ class m210412_070737_create_table_stores extends Migration
             'id_merchant' => $this->integer(11)->notNull(),
             'denomination' => $this->string(255)->notNull(),
             'bps_storeid' => $this->string(255)->notNull(),
+            'wallet_address' => $this->string(500)->defaultValue(NULL),
+            'derivedKey' => $this->string(500)->defaultValue(NULL),
+            'privateKey' => $this->string(500)->defaultValue(NULL),
         ]);
 
         // creates index for column `id_merchant`

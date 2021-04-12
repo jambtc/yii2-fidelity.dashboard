@@ -18,7 +18,7 @@ class MerchantsSearch extends Merchants
     {
         return [
             [['id', 'id_user'], 'integer'],
-            [['denomination', 'tax_code', 'address', 'cap', 'city', 'country', 'wallet_address', 'derivedKey', 'privateKey'], 'safe'],
+            [['denomination', 'tax_code', 'address', 'cap', 'city', 'country'], 'safe'],
         ];
     }
 
@@ -67,10 +67,8 @@ class MerchantsSearch extends Merchants
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'cap', $this->cap])
             ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'country', $this->country])
-            ->andFilterWhere(['like', 'wallet_address', $this->wallet_address])
-            ->andFilterWhere(['like', 'derivedKey', $this->derivedKey])
-            ->andFilterWhere(['like', 'privateKey', $this->privateKey]);
+            ->andFilterWhere(['like', 'country', $this->country]);
+
 
         return $dataProvider;
     }

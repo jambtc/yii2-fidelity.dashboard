@@ -4,8 +4,6 @@ namespace app\models;
 
 use Yii;
 
-use app\components\WebApp;
-
 /**
  * This is the model class for table "merchants".
  *
@@ -17,9 +15,6 @@ use app\components\WebApp;
  * @property string|null $cap
  * @property string|null $city
  * @property string|null $country
- * @property string|null $wallet_address
- * @property string|null $derivedKey
- * @property string|null $privateKey
  *
  * @property Users $user
  */
@@ -44,7 +39,6 @@ class Merchants extends \yii\db\ActiveRecord
             [['denomination', 'address', 'city', 'country'], 'string', 'max' => 255],
             [['tax_code'], 'string', 'max' => 50],
             [['cap'], 'string', 'max' => 10],
-            [['wallet_address', 'derivedKey', 'privateKey'], 'string', 'max' => 500],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
     }
@@ -63,9 +57,7 @@ class Merchants extends \yii\db\ActiveRecord
             'cap' => Yii::t('app', 'Cap'),
             'city' => Yii::t('app', 'City'),
             'country' => Yii::t('app', 'Country'),
-            'wallet_address' => Yii::t('app', 'Wallet Address'),
-            'derivedKey' => Yii::t('app', 'Derived Key'),
-            'privateKey' => Yii::t('app', 'Private Key'),
+
         ];
     }
 
@@ -88,15 +80,7 @@ class Merchants extends \yii\db\ActiveRecord
         return new \app\models\query\MerchantsQuery(get_called_class());
     }
 
-    public function beforeSave($insert) {
-        if(isset($this->derivedKey))
-            $this->derivedKey = WebApp::encrypt($this->derivedKey);
 
-        if(isset($this->privateKey))
-            $this->privateKey = WebApp::encrypt($this->privateKey);
-
-        return parent::beforeSave($insert);
-    }
 
     public function getIdByUser($id) {
         return self::find(['id_user'=>$id])->one()->id;

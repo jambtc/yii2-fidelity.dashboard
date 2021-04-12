@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\WebApp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Merchants */
@@ -26,22 +25,6 @@ use app\components\WebApp;
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
-
-    <?php
-    if (!$model->isNewRecord){
-        $model->derivedKey = WebApp::decrypt($model->derivedKey);
-    }
-    ?>
-
-    <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true]) ?>
-    <div class="invalid-feedback alert alert-danger" id="seed-error" ></div>
-
-    <?= $form->field($model, 'wallet_address')->hiddenInput(['maxlength' => true])->label(false) ?>
-    <?= $form->field($model, 'privateKey')->hiddenInput(['maxlength' => true])->label(false) ?>
-
-    <div class="form-group">
-        <?= Html::Button(Yii::t('app', 'Confirm Seed'), ['class' => 'btn btn-info derivedKey']) ?>
-    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>

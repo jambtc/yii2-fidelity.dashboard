@@ -18,7 +18,7 @@ class StoresSearch extends Stores
     {
         return [
             [['id', 'id_merchant'], 'integer'],
-            [['denomination', 'bps_storeid'], 'safe'],
+            [['denomination', 'bps_storeid', 'wallet_address', 'derivedKey', 'privateKey'], 'safe'],
         ];
     }
 
@@ -63,7 +63,10 @@ class StoresSearch extends Stores
         ]);
 
         $query->andFilterWhere(['like', 'denomination', $this->denomination])
-            ->andFilterWhere(['like', 'bps_storeid', $this->bps_storeid]);
+            ->andFilterWhere(['like', 'bps_storeid', $this->bps_storeid])
+            ->andFilterWhere(['like', 'wallet_address', $this->wallet_address])
+            ->andFilterWhere(['like', 'derivedKey', $this->derivedKey])
+            ->andFilterWhere(['like', 'privateKey', $this->privateKey]);
 
         return $dataProvider;
     }

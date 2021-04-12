@@ -2,6 +2,8 @@
 
 use yii\helpers\Url;
 use yii\web\View;
+use app\assets\LightWalletAsset;
+LightWalletAsset::register($this);
 
 $options = [
     'invalidSeedMessage' => Yii::t('app','Invalid seed!'),
@@ -9,10 +11,6 @@ $options = [
     'validSeedMessage' => Yii::t('app','Seed is correct!'),
     'confirmSeedMessage' => Yii::t('app','Check the wallet address derived from the seed you have written. Your address is:'),
     'spinner' => '<div class="button-spinner spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
-    'baseUrl' => Yii::$app->request->baseUrl,
-    'language' => Yii::$app->language,
-    'cryptURL' => Url::to(['/wallet/crypt']),
-    // ...
 ];
 $this->registerJs(
     "var yiiOptions = ".\yii\helpers\Json::htmlEncode($options).";",
@@ -29,7 +27,7 @@ $wallet_restore = <<<JS
 
 
     // controlla la validità del seed inserito
-    var seedField = document.querySelector('#merchants-derivedkey');
+    var seedField = document.querySelector('#stores-derivedkey');
     seedField.addEventListener('input', function(e) {
         var insertedSeed = $.trim(e.target.value).toLowerCase();
         console.log('[verify]:', insertedSeed);
@@ -48,21 +46,22 @@ $wallet_restore = <<<JS
     });
 
     // genera la private key dal seed
-    var checkButton = document.querySelector('.derivedKey');
+    var checkButton = document.querySelector('.btn-derivedKey');
     checkButton.addEventListener('click', function(event){
 
-  		seed = $.trim($('#merchants-derivedkey').val()).toLowerCase();
+  		seed = $.trim($('#stores-derivedkey').val()).toLowerCase();
   		if (WordCount(seed) != 12 || !(isSeedValid(seed)) ){
   			console.log('[Restore]: seed non valido', seed);
   			$('#seed-error').show().text(yiiOptions.invalidSeedMEssage);
   			return;
   		}
-  		$('#seed-error').html(yiiOptions.spinner);
+  		// $('#seed-error').show().html(yiiOptions.spinner);
+        $('.btn-derivedKey').html(yiiOptions.spinner);
 
   		// la password viene generata in automatico dal sistema di 32 caratteri
   		var password = generateEntropy(64);
 
-  		console.log('[Merchants]: seed valido', seed);
+  		console.log('[Stores]: seed valido', seed);
   		initializeVault(password,seed);
   	});
 
@@ -116,15 +115,18 @@ $wallet_restore = <<<JS
                 		    var address = ks.getAddresses()[0];
                 		    var privateKey = ks.exportPrivateKey(address, pwDerivedKey);
 
-                            console.log('[Merchants]: wallet address is: ', address);
-                            console.log('[Merchants]: private key is: ', privateKey);
+                            console.log('[Stores]: wallet address is: ', address);
+                            console.log('[Stores]: private key is: ', privateKey);
 
-                            $('#merchants-wallet_address').val(address);
-                            $('#merchants-privatekey').val(privateKey);
+                            $('#stores-wallet_address').val(address);
+                            $('#stores-privatekey').val(privateKey);
 
                             $('#seed-error').removeClass('alert-danger');
+                            $('#btn-save').removeClass('disabled');
+                            $('#btn-save').prop('disabled',false);
                             $('#seed-error').addClass('alert-success');
                             $('#seed-error').show().html(yiiOptions.confirmSeedMessage+' '+address);
+                            $('.btn-derivedKey').hide('');
                         }
                     )
     		});

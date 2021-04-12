@@ -41,9 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'cap',
             'city',
             'country',
-            'wallet_address',
-            // 'derivedKey',
-            // 'privateKey',
+
         ],
     ]) ?>
 
