@@ -5,16 +5,17 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use app\components\WebApp;
 use app\models\Merchants;
+use app\models\Stores;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Stores */
+/* @var $model app\models\Pos */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Stores'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="stores-view">
+<div class="pos-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            // 'id',
             // 'id_merchant',
             [
                 'attribute' => 'id_merchant',
@@ -49,8 +50,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 'visible' => (Yii::$app->user->id == 1),
             ],
+            // 'id_store',
+            [
+                'attribute' => 'id_store',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $id = WebApp::encrypt($data->id_store);
+                    $store = Stores::findOne($data->id_store);
+                    return Html::a($store->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
+                            [
+                                'class' => 'btn btn-success center-block text-truncate',
+                                'style' => 'max-width: 250px;'
+                            ]
+                        );
+                    },
+            ],
             'denomination',
-            'bps_storeid',
+            'sin',
         ],
     ]) ?>
 

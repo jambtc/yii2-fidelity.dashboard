@@ -1,19 +1,15 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\models\Merchants;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Stores */
+/* @var $model app\models\Users */
 /* @var $form yii\widgets\ActiveForm */
-
-$merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
-
+$model->password = '';
 ?>
 
-<div class="stores-form">
+<div class="users-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -21,11 +17,8 @@ $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
         <?= $form->errorSummary($model, ['id' => 'error-summary','class'=>'col-lg-12']) ?>
     </div>
 
-    <?php if (Yii::$app->user->id == 1): ?>
-        <?= $form->field($model, 'id_merchant')->dropDownList($merchants) ?>
-    <?php endif; ?>
+    <?= $form->field($model, 'password')->passwordInput(['autofocus' => true, 'maxlength' => true]) ?>
 
-    <?= $form->field($model, 'denomination')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

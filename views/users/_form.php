@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
         <?= $form->errorSummary($model, ['id' => 'error-summary','class'=>'col-lg-12']) ?>
     </div>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'readonly' => !$model->isNewRecord]) ?>
 
     <?php if ($model->isNewRecord) : ?>
         <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>

@@ -119,4 +119,10 @@ class Users extends \yii\db\ActiveRecord
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
+
+    public function beforeSave($insert) {
+        $this->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+
+        return parent::beforeSave($insert);
+    }
 }

@@ -7,7 +7,7 @@ use app\models\Users;
 use app\components\Rows;
 use app\components\WebApp;
 
-if ($userRequestsProvider->getTotalCount() == 0)
+if ($userRequestsProvider === null || $userRequestsProvider->getTotalCount() == 0)
     return true;
 
 ?>

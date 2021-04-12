@@ -24,6 +24,10 @@ $this->title = 'Login';
         ],
     ]); ?>
 
+    <div class="txt-left">
+        <?= $form->errorSummary($model, ['id' => 'error-summary','class'=>'col-lg-12']) ?>
+    </div>
+
         <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
         <?= $form->field($model, 'password')->passwordInput() ?>

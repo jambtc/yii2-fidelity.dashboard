@@ -19,7 +19,7 @@ class m210412_070737_create_table_stores extends Migration
             'bps_storeid' => $this->string(255)->notNull(),
         ]);
 
-        // creates index for column `id_user`
+        // creates index for column `id_merchant`
        $this->createIndex(
            '{{%idx-stores-id_merchant}}',
            '{{%stores}}',

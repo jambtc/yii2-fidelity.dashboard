@@ -91,13 +91,34 @@ class UsersController extends Controller
         $model = $this->findModel(WebApp::decrypt($id));
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => WebApp::decrypt($model->id)]);
+            return $this->redirect(['view', 'id' => WebApp::encrypt($model->id)]);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
     }
+
+    /**
+     * Updates an existing Users model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionChangePassword($id)
+    {
+        $model = $this->findModel(WebApp::decrypt($id));
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => WebApp::encrypt($model->id)]);
+        }
+
+        return $this->render('change-password', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Make a Merchant for an existing user.
      * If make is successful, the browser will be redirected to the merchants 'index' page.

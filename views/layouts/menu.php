@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use app\components\WebApp;
 
 use kartik\icons\Icon;
 Icon::map($this);
@@ -75,7 +76,7 @@ if (Yii::$app->user->isGuest)
                 (Yii::$app->user->id == 1) ?
                     (['label' => Icon::show('pencil-ruler') . Yii::t('app','Rules Engine'), 'url' => ['/rulesengine/index']]) :
                 '',
-                ['label' => Icon::show('user') . Yii::t('app','User account'), 'url' => ['/users/view','id'=>Yii::$app->user->id]]
+                ['label' => Icon::show('user') . Yii::t('app','User account'), 'url' => ['/users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]]
             ],
         ];
 
