@@ -36,16 +36,17 @@ AdminLteAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
+    <footer class="footer">
+        <strong>Copyright © <?= date('Y') ?> <a href="https://<?= Yii::$app->params['website'] ?>"><?= Yii::$app->params['company'] ?></a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <?= Yii::powered() ?>
+        </div>
+    </footer>
 </div>
 
 
-<footer class="footer">
-    <strong>Copyright © <?= date('Y') ?> <a href="https://<?= Yii::$app->params['website'] ?>"><?= Yii::$app->params['company'] ?></a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <?= Yii::powered() ?>
-    </div>
-</footer>
+
 
 <?php $this->endBody() ?>
 </body>

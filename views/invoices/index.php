@@ -35,13 +35,12 @@ $this->title = Yii::t('app', 'Invoices');
             [
                 'attribute' => 'id',
                 'format' => 'raw',
-
                 'value' => function ($data) {
                     $id = WebApp::encrypt($data->id);
                     return Html::a($id, Url::toRoute(['/invoices/view', 'id' => $id]),
                             [
                                 'class' => 'btn btn-success center-block text-truncate',
-                                'style' => 'width: 150px;'
+                                'style' => 'min-width: 250px;'
                             ]
                         );
                     },
