@@ -8,7 +8,7 @@ use app\models\Users;
 /**
  * Model representing Signup Form.
  */
-class SignupForm extends Model
+class SignupForm extends \yii\db\ActiveRecord
 {
     public $username;
     public $password;
@@ -22,6 +22,14 @@ class SignupForm extends Model
     public $cap;
     public $city;
     public $country;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'users';
+    }
 
 
     /**

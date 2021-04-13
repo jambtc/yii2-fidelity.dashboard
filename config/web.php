@@ -14,6 +14,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@app/themes/adminlte'
+                ],
+            ],
+        ],
         'assetManager' => [
             'appendTimestamp' => true
         ],

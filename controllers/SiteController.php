@@ -76,13 +76,12 @@ class SiteController extends Controller
 
         $userRequestsProvider = null;
         if (Yii::$app->user->id != 1){
-
             $dataProvider->query->andWhere(['=','id_user', Yii::$app->user->id]);
         } else {
             $query = Users::find()
                 ->where(['is_merchant' => 0])
                 ->andWhere(['!=', 'id', 1]);
-                
+
             $userRequestsProvider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
@@ -96,7 +95,8 @@ class SiteController extends Controller
             ]);
         }
 
-
+        if (Yii::$app->user->isGuest)
+            $this->layout = 'main-guest';
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -114,6 +114,8 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
+
+        $this->layout = 'main-login';
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -147,6 +149,7 @@ class SiteController extends Controller
     {
         // echo "<pre>".print_r($_POST,true)."</pre>";
  		// exit;
+        $this->layout = 'main-login';
 
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {

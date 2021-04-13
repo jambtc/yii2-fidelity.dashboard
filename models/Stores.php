@@ -34,7 +34,7 @@ class Stores extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_merchant'], 'required'],
+            [['id_merchant','denomination'], 'required'],
             [['id_merchant'], 'integer'],
             [['denomination', 'bps_storeid'], 'string', 'max' => 255],
             [['wallet_address', 'derivedKey', 'privateKey'], 'string', 'max' => 500],
