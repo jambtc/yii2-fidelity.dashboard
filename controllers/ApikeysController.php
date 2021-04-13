@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use app\components\WebApp;
+use app\models\Merchants;
 
 /**
  * ApikeysController implements the CRUD actions for Apikeys model.
@@ -51,6 +52,10 @@ class ApikeysController extends Controller
     {
         $searchModel = new ApikeysSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if (Yii::$app->user->id != 1)
+            $dataProvider->query->andWhere(['=','id_merchant', Merchants::getIdByUser(Yii::$app->user->id)]);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

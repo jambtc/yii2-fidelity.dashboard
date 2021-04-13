@@ -26,11 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Change password'), ['change-password', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-warning']) ?>
 
+        <?php if ( (Yii::$app->user->id == 1 && $model->id == 1) || Yii::$app->user->id > 1) { ?>
+            <?= Html::a(Yii::t('app', 'Change password'), ['change-password', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-warning']) ?>
+        <?php } ?>
 
-        <?php if ($model->status_activation_code == 0) : ?>
-
+        <?php if ($model->is_merchant == 0 && Yii::$app->user->id == 1) : ?>
             <?= Html::a(Yii::t('app', 'Make him merchant'), ['subscribe', 'id' => WebApp::encrypt($model->id)], [
                 'class' => 'btn btn-warning',
                 'data' => [
@@ -38,7 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ],
             ]) ?>
-
+        <?php endif; ?>
+        <?php if ($model->status_activation_code == 0) : ?>
             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => WebApp::encrypt($model->id)], [
                 'class' => 'btn btn-danger',
                 'data' => [

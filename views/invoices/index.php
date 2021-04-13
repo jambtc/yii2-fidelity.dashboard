@@ -26,6 +26,7 @@ $this->title = Yii::t('app', 'Invoices');
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'layout' => "{summary}\n{items}\n{pager}",
+        'tableOptions' => ['class' => 'table m-0 table-striped'],
         // 'layout' => "{summary}\n{items}",
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
@@ -39,8 +40,8 @@ $this->title = Yii::t('app', 'Invoices');
                     $id = WebApp::encrypt($data->id);
                     return Html::a($id, Url::toRoute(['/invoices/view', 'id' => $id]),
                             [
-                                'class' => 'btn btn-success center-block text-truncate',
-                                'style' => 'min-width: 250px;'
+                                'class' => 'badge badge-success center-block text-truncate',
+                                'style' => 'max-width: 250px;'
                             ]
                         );
                     },

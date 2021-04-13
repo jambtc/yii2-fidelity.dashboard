@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $user = Users::findOne($data->id_user);
                     return Html::a($user->username, Url::toRoute(['/merchants/view', 'id' => $id]),
                             [
-                                'class' => 'btn btn-success center-block text-truncate',
+                                'class' => 'badge badge-primary center-block text-truncate',
                                 'style' => 'max-width: 250px;'
                             ]
                         );
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'cap',
             //'city',
             //'country',
-            
+
 
             // ['class' => 'yii\grid\ActionColumn'],
         ],

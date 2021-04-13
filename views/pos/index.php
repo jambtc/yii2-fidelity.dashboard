@@ -31,39 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id',
-            // 'id_merchant',
-            // 'id_store',
-            [
-                'attribute' => 'id_merchant',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    $id = WebApp::encrypt($data->id_merchant);
-                    $merchant = Merchants::findOne($data->id_merchant);
-                    return Html::a($merchant->denomination, Url::toRoute(['/merchants/view', 'id' => $id]),
-                            [
-                                'class' => 'btn btn-success center-block text-truncate',
-                                'style' => 'max-width: 250px;'
-                            ]
-                        );
-                    },
-                'visible' => (Yii::$app->user->id == 1),
-            ],
-            [
-                'attribute' => 'id_store',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    $id = WebApp::encrypt($data->id_store);
-                    $store = Stores::findOne($data->id_store);
-                    return Html::a($store->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
-                            [
-                                'class' => 'btn btn-success center-block text-truncate',
-                                'style' => 'max-width: 250px;'
-                            ]
-                        );
-                    },
-            ],
-            // 'denomination',
+
             [
                 'attribute' => 'denomination',
                 'format' => 'raw',
@@ -72,15 +40,45 @@ $this->params['breadcrumbs'][] = $this->title;
                     $pos = Pos::findOne($data->id);
                     return Html::a($pos->denomination, Url::toRoute(['/pos/view', 'id' => $id]),
                             [
-                                'class' => 'btn btn-success center-block text-truncate',
+                                'class' => 'badge badge-success center-block text-truncate',
                                 'style' => 'max-width: 250px;'
                             ]
                         );
                     },
             ],
             'sin',
+            [
+                'attribute' => 'id_store',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $id = WebApp::encrypt($data->id_store);
+                    $store = Stores::findOne($data->id_store);
+                    return Html::a($store->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
+                            [
+                                'class' => 'badge badge-primary center-block text-truncate',
+                                'style' => 'max-width: 250px;'
+                            ]
+                        );
+                    },
+            ],
+            [
+                'attribute' => 'id_merchant',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $id = WebApp::encrypt($data->id_merchant);
+                    $merchant = Merchants::findOne($data->id_merchant);
+                    return Html::a($merchant->denomination, Url::toRoute(['/merchants/view', 'id' => $id]),
+                            [
+                                'class' => 'badge badge-primary center-block text-truncate',
+                                'style' => 'max-width: 250px;'
+                            ]
+                        );
+                    },
+                'visible' => (Yii::$app->user->id == 1),
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

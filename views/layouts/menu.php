@@ -22,7 +22,12 @@ if (Yii::$app->user->isGuest)
                 ['label' => Icon::show('comment') . Yii::t('app','Notifications'), 'url' => ['/notifications/index']],
             ],
         ];
-    $items[] = [
+
+
+    if ((Yii::$app->user->id == 1)
+        || (Yii::$app->user->id > 1 && Yii::$app->user->identity->is_merchant == 1))  {
+
+        $items[] = [
             'label' => Icon::show('check-square') . Yii::t('app','Manage App'),
             'items' => [
                 (Yii::$app->user->id == 1) ?
@@ -32,6 +37,7 @@ if (Yii::$app->user->isGuest)
                 ['label' => Icon::show('desktop') . Yii::t('app','Point of sale'), 'url' => ['/pos/index']],
             ],
         ];
+    }
 
     if (Yii::$app->user->id == 1){
         $items[] = [
@@ -76,7 +82,7 @@ if (Yii::$app->user->isGuest)
                 (Yii::$app->user->id == 1) ?
                     (['label' => Icon::show('pencil-ruler') . Yii::t('app','Rules Engine'), 'url' => ['/rulesengine/index']]) :
                 '',
-                (Yii::$app->user->id != 1) ?
+                (Yii::$app->user->id != 1 && Yii::$app->user->identity->is_merchant == 1) ?
                     (['label' => Icon::show('key') . Yii::t('app','Api keys'), 'url' => ['/apikeys/index']]) :
                 '',
                 ['label' => Icon::show('user') . Yii::t('app','User account'), 'url' => ['/users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]]

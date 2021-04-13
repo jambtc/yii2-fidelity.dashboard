@@ -161,4 +161,14 @@ class UserLogin extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
+
+    /**
+     * Validates user activation
+     *
+     * @return bool if status is valid for current user
+     */
+    public function validateStatus()
+    {
+        return $this->status_activation_code;
+    }
 }

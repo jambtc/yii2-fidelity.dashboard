@@ -42,8 +42,7 @@ class StoresController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         if (Yii::$app->user->id != 1)
-            // $dataProvider->query->andWhere(['=','id_merchant', $dataProvider->getMerchant()]);
-        $dataProvider->query->andWhere(['=','id_merchant', Merchants::getIdByUser(Yii::$app->user->id)]);
+            $dataProvider->query->andWhere(['=','id_merchant', Merchants::getIdByUser(Yii::$app->user->id)]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($data) {
                     return Html::a(
-                        \Yii::$app->formatter->asDatetime($data->timestamp,'long'), 
+                        \Yii::$app->formatter->asDatetime($data->timestamp,'long'),
                         Url::toRoute(['/logs/view', 'id' => $data->id]),
                         [
-                            'class' => 'btn btn-success center-block text-truncate',
-                            'style' => 'min-width: 150px;'
+                            'class' => 'badge badge-success center-block text-truncate',
+                            'style' => 'max-width: 250px;'
                         ]
                         );
                     },

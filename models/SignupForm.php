@@ -102,7 +102,7 @@ class SignupForm extends Model
 
             $user = new Users();
             $user->username = $this->username;
-            $user->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            $user->password = $this->password;
             $user->activation_code = $nonce;
             $user->status_activation_code = 0;
             $user->authKey = $secretkey;

@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'tableOptions' => ['class' => 'table w-auto small'],
+        'tableOptions' => ['class' => 'table w-auto'],
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $id = WebApp::encrypt($data->id);
                     return Html::a($data->username, Url::toRoute(['/users/view', 'id' => $id]),
                             [
-                                'class' => 'btn btn-success center-block text-truncate',
+                                'class' => 'badge badge-success center-block text-truncate',
                                 'style' => 'max-width: 250px;'
                             ]
                         );
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     $status = [0=>Yii::t('app','Not active'),1=>Yii::t('app','Active')];
                     return $status[$data->status_activation_code];
-                    },
+                },
             ],
             //'authKey',
             //'accessToken',
@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'city',
             //'country',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

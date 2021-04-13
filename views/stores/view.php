@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $merchant = Merchants::findOne($data->id_merchant);
                     return Html::a($merchant->denomination, Url::toRoute(['/merchants/view', 'id' => $id]),
                             [
-                                'class' => 'btn btn-success center-block text-truncate',
+                                'class' => 'badge badge-primary center-block text-truncate',
                                 'style' => 'max-width: 250px;'
                             ]
                         );

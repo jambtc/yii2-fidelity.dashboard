@@ -16,10 +16,14 @@
             </div>
         </div>
         <div class="row">
-            <?= $this->render('templates/last_invoices',['dataProvider'=>$dataProvider]); ?>
+            <div class="col-lg-12 col-12">
+                <?= $this->render('templates/last_invoices',['dataProvider'=>$dataProvider]); ?>
+            </div>
         </div>
         <div class="row">
-            <?= $this->render('templates/users_requests',['userRequestsProvider'=>$userRequestsProvider]); ?>
+            <div class="col-lg-12 col-12">
+                <?= $this->render('templates/users_requests',['userRequestsProvider'=>$userRequestsProvider]); ?>
+            </div>
         </div>
     </div>
 </div>
