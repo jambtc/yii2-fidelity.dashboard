@@ -38,7 +38,7 @@ if ($userRequestsProvider === null || $userRequestsProvider->getTotalCount() == 
                         'format' => 'raw',
                         'value' => function ($data) {
                             $id = WebApp::encrypt($data->id);
-                            return Html::a($data->username, Url::toRoute(['/users/view', 'id' => $id]),
+                            return Html::a($data->username, Url::toRoute(['/subscriptions/view', 'id' => $id]),
                                     [
                                         'class' => 'badge badge-primary center-block text-truncate',
                                         'style' => 'max-width: 250px;'
