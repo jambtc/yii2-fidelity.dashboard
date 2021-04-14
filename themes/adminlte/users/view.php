@@ -41,10 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <strong><i class="fas fa-book mr-1"></i> Status</strong>
 
                 <p class="text-muted">
-                  <?php echo Yii::t('app','Account status is: '. ($model->status_activation_code == 0) ? Yii::t('app','Not active') : Yii::t('app','Active')) ?>
+                    <?php
+                        $status = [0=>Yii::t('app','Not active'),1=>Yii::t('app','Active')];
+                        echo Yii::t('app','Account status is: '). $status[$model->status_activation_code];
+                    ?>
                 </p>
                 <p class="text-muted">
-                  <?php echo Yii::t('app','User account is: '. ($model->is_merchant == 0) ? Yii::t('app','Not merchant') : Yii::t('app','Merchant')) ?>
+                    <?php
+                        $merchant = [0=>Yii::t('app','Not merchant'),1=>Yii::t('app','Merchant')];
+                        echo Yii::t('app','User account is: '). $merchant[$model->is_merchant];
+                    ?>
                 </p>
 
                 <hr>
