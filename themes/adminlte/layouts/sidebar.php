@@ -39,16 +39,19 @@ use app\components\WebApp;
         if ((Yii::$app->user->id == 1)
             || (Yii::$app->user->id > 1 && Yii::$app->user->identity->is_merchant == 1))  {
 
+            $subarray = null;
+            if (Yii::$app->user->id == 1){
+                $subarray = [
+                    ['label' => Yii::t('app','Merchants'), 'url' => ['/merchants/index'], 'icon' => 'industry'],
+                ];
+            }
+            $subarray[] = ['label' => Yii::t('app','Stores'), 'url' => ['/stores/index'], 'icon' => 'shopping-cart'];
+            $subarray[] = ['label' => Yii::t('app','Point of sale'), 'url' => ['/pos/index'], 'icon' => 'desktop'];
+
             $items[] = [
                 'label' => Yii::t('app','Manage App'),
                 'icon' => 'check-square',
-                'items' => [
-                    (Yii::$app->user->id == 1) ?
-                        (['label' => Yii::t('app','Merchants'), 'url' => ['/merchants/index'], 'icon' => 'industry']) :
-                        null,
-                    ['label' => Yii::t('app','Stores'), 'url' => ['/stores/index'], 'icon' => 'shopping-cart'],
-                    ['label' => Yii::t('app','Point of sale'), 'url' => ['/pos/index'], 'icon' => 'desktop'],
-                ],
+                'items' => $subarray,
             ];
         }
 
@@ -72,6 +75,7 @@ use app\components\WebApp;
                     ],
                 ];
         }
+        $subarray = null;
         if (Yii::$app->user->id == 1){
             $subarray = [
                 ['label' => Yii::t('app','Owner'), 'url' => ['/owner/index'], 'icon' => 'paragraph'],
