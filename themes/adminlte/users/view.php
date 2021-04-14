@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::a(Yii::t('app', 'Change password'), ['change-password', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-warning']) ?>
                     <?php } ?>
 
-                    <?php if ($model->is_merchant == 0 && Yii::$app->user->id == 1) : ?>
+                    <?php if ($model->id != 1 && $model->is_merchant == 0 && Yii::$app->user->id == 1) : ?>
                         <?= Html::a(Yii::t('app', 'Make him merchant'), ['subscribe', 'id' => WebApp::encrypt($model->id)], [
                             'class' => 'btn btn-warning',
                             'data' => [

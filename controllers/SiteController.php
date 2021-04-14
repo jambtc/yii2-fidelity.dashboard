@@ -54,6 +54,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+                'layout' => 'main-login',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -164,6 +165,7 @@ class SiteController extends Controller
 
     public function actionActivate()
     {
+        $this->layout = 'main-login';
         // echo "<pre>".print_r($_POST,true)."</pre>";
         // exit;
         $id = WebApp::decrypt($_GET['id']);
@@ -191,8 +193,12 @@ class SiteController extends Controller
                 ->andWhere(['id'=>$id])
                 ->andWhere(['status_activation_code'=>0])
                 ->one();
-            $delete->delete();
-            Yii::$app->session->setFlash('dataOutdated');
+            if ($delete !== null) {
+                $delete->delete();
+                Yii::$app->session->setFlash('dataOutdated');
+            } else {
+                Yii::$app->session->setFlash('userActived');
+            }
             // return $this->refresh();
         }
         // Now do the sign
@@ -216,8 +222,12 @@ class SiteController extends Controller
                 ->andWhere(['id'=>$id])
                 ->andWhere(['status_activation_code'=>0])
                 ->one();
-            $delete->delete();
-            Yii::$app->session->setFlash('dataNotSigned');
+            if ($delete !== null) {
+                $delete->delete();
+                Yii::$app->session->setFlash('dataNotSigned');
+            } else {
+                Yii::$app->session->setFlash('dataOutdated');
+            }
         }
         // exit;
         return $this->render('activate', [
