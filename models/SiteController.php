@@ -54,7 +54,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-                'layout' => 'main-login',
+                'layout' => (Yii::$app->user->isGuest) ? 'main-login' : 'main',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
