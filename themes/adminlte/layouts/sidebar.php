@@ -1,5 +1,6 @@
 <?php
 use app\components\WebApp;
+use yii\helpers\Url;
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -21,7 +22,7 @@ use app\components\WebApp;
                 <img src="css/images/anonymous.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?= Yii::$app->user->identity->first_name .' '.Yii::$app->user->identity->last_name ?> </a>
+                <a href="<?= Url::to(['users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]) ?>" class="d-block"><?= Yii::$app->user->identity->first_name .' '.Yii::$app->user->identity->last_name ?> </a>
             </div>
         </div>
 

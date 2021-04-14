@@ -38,20 +38,42 @@ $this->params['breadcrumbs'][] = $this->title;
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Status</strong>
+                  <div class="row">
+                    <strong><i class="fas fa-book mr-1"></i> Status</strong>
 
-                <p class="text-muted">
                     <?php
                         $status = [0=>Yii::t('app','Not active'),1=>Yii::t('app','Active')];
-                        echo Yii::t('app','Account status is: '). $status[$model->status_activation_code];
-                    ?>
-                </p>
-                <p class="text-muted">
-                    <?php
                         $merchant = [0=>Yii::t('app','Not merchant'),1=>Yii::t('app','Merchant')];
-                        echo Yii::t('app','User account is: '). $merchant[$model->is_merchant];
+                        $color = [0=>'warning',1=>'success'];
+
+
+                        //echo Yii::t('app','Account status is: '). $status[$model->status_activation_code];
                     ?>
-                </p>
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow-sm">
+                            <span class="info-box-icon bg-<?= $color[$model->status_activation_code] ?>"><i class="far fa-flag"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text"><?= Yii::t('app','Account status') ?></span>
+                                <span class="info-box-number"><?= $status[$model->status_activation_code] ?></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow-sm">
+                            <span class="info-box-icon bg-<?= $color[$model->is_merchant] ?>"><i class="far fa-flag"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text"><?= Yii::t('app','User account') ?></span>
+                                <span class="info-box-number"><?= $merchant[$model->is_merchant] ?></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                </div>
 
                 <hr>
 
