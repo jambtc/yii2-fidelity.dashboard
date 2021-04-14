@@ -57,10 +57,10 @@ $this->title = Yii::t('app','Login');
         <!-- /.social-auth-links -->
 
         <p class="mb-1">
-            <a href="<?= Url::to(['site/forgot-password']) ?>">I forgot my password</a>
+            <a href="<?= Url::to(['site/request-password-reset']) ?>"><?= Yii::t('app','I forgot my password') ?></a>
         </p>
         <p class="mb-0">
-            <a href="<?= Url::to(['site/register']) ?>" class="text-center">Register a new membership</a>
+            <a href="<?= Url::to(['site/register']) ?>" class="text-center"><?= Yii::t('app','Register a new membership') ?></a>
         </p>
     </div>
     <!-- /.login-card-body -->
