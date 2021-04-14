@@ -68,7 +68,7 @@ use app\components\WebApp;
                     'icon' => 'clipboard-list',
                     'items' => [
                         ['label' => Yii::t('app','Status'), 'url' => ['/logs/index'], 'icon' => 'list-alt'],
-                        ['label' => Yii::t('app','Rules Engine'), 'url' => ['/rerequests/index'], 'icon' => 'cogs'],
+                        ['label' => Yii::t('app','Rules Engine'), 'url' => ['/rulesenginerequests/index'], 'icon' => 'cogs'],
                     ],
                 ];
         }
