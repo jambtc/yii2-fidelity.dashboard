@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use app\components\Settings;
 use app\components\WebApp;
 
-
+$owner = Settings::owner();
 $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 'token' => $user->activation_code]);
 ?>
 <table style="font-family:Roboto; border-spacing:0px;padding: 20px; background-color: #F8F9FA; border-collapse:separate;" summary="o_mail_notification" width="100%" cellpadding="0" border="0" bgcolor="#F8F9FA">
@@ -73,9 +73,6 @@ $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 't
 		</td>
 	</tr>
 	<!-- FOOTER -->
-	<?php
-	$settings = Settings::load();
-	 ?>
 	<tr>
 		<td style="min-width: 590px;" align="center">
 			<table style="border-spacing:0px;min-width: 590px; background-color: rgb(248,249,250); padding: 20px; border-collapse:separate;" width="590" cellpadding="0" border="0" bgcolor="#F8F9FA">
@@ -84,10 +81,10 @@ $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['site/reset-password', 't
 						<td style="color: #6c737f; padding-top: 10px; padding-bottom: 10px;" valign="middle" align="left">
 							<div>
 								<p style="font-size: 14px;">
-									<strong><?php echo Yii::$app->name; ?></strong>
-									<!-- <br><?php //echo $settings->gdpr_address; ?>
-									<br><?php //echo $settings->gdpr_cap.' - '. $settings->gdpr_city; ?>
-									<br>Tel. <?php //echo $settings->gdpr_telefono; ?> -->
+									<strong><?= Yii::$app->name; ?></strong>
+									<br><?= $owner->address ?>
+									<br><?= $owner->cap.' - '. $owner->city ?>
+									<br>Tel. <?= $owner->phone ?>
 									<br><?php echo Yii::$app->params['adminEmail'] .' | '. Yii::$app->params['website']; ?>
 								</p>
 							</div>

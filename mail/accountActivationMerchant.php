@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use app\components\Settings;
 use app\components\WebApp;
 
+$owner = Settings::owner();
 $URL = Yii::$app->urlManager->createAbsoluteUrl(['site/index']);
 ?>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
@@ -68,9 +69,6 @@ $URL = Yii::$app->urlManager->createAbsoluteUrl(['site/index']);
 		</td>
 	</tr>
 	<!-- FOOTER -->
-	<?php
-	$settings = Settings::load();
-	 ?>
 	<tr>
 		<td style="min-width: 590px;" align="center">
 			<table style="border-spacing:0px;min-width: 590px; background-color: rgb(248,249,250); padding: 20px; border-collapse:separate;" width="590" cellpadding="0" border="0" bgcolor="#F8F9FA">
@@ -79,10 +77,10 @@ $URL = Yii::$app->urlManager->createAbsoluteUrl(['site/index']);
 						<td style="color: #6c737f; padding-top: 10px; padding-bottom: 10px;" valign="middle" align="left">
 							<div>
 								<p style="font-size: 14px;">
-									<strong><?php echo Yii::$app->name; ?></strong>
-									<!-- <br><?php //echo $settings->gdpr_address; ?>
-									<br><?php //echo $settings->gdpr_cap.' - '. $settings->gdpr_city; ?>
-									<br>Tel. <?php //echo $settings->gdpr_telefono; ?> -->
+									<strong><?= Yii::$app->name; ?></strong>
+									<br><?= $owner->address ?>
+									<br><?= $owner->cap.' - '. $owner->city ?>
+									<br>Tel. <?= $owner->phone ?>
 									<br><?php echo Yii::$app->params['adminEmail'] .' | '. Yii::$app->params['website']; ?>
 								</p>
 							</div>

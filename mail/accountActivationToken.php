@@ -3,8 +3,7 @@ use yii\helpers\Url;
 use app\components\Settings;
 use app\components\WebApp;
 
-// echo "<pre>".print_r($user->attributes,true)."</pre>";
-// exit;
+$owner = Settings::owner();
 
 // do the sign
 $sign = base64_encode(hash_hmac('sha512', hash('sha256', $user->activation_code . $user->accessToken, true), base64_decode($user->authKey), true));
@@ -74,9 +73,6 @@ $URL = 'https://'.$_SERVER['HTTP_HOST'].Url::to(['site/activate','id'=>WebApp::e
 		</td>
 	</tr>
 	<!-- FOOTER -->
-	<?php
-	$settings = Settings::load();
-	 ?>
 	<tr>
 		<td style="min-width: 590px;" align="center">
 			<table style="border-spacing:0px;min-width: 590px; background-color: rgb(248,249,250); padding: 20px; border-collapse:separate;" width="590" cellpadding="0" border="0" bgcolor="#F8F9FA">
@@ -85,10 +81,10 @@ $URL = 'https://'.$_SERVER['HTTP_HOST'].Url::to(['site/activate','id'=>WebApp::e
 						<td style="color: #6c737f; padding-top: 10px; padding-bottom: 10px;" valign="middle" align="left">
 							<div>
 								<p style="font-size: 14px;">
-									<strong><?php echo Yii::$app->name; ?></strong>
-									<!-- <br><?php //echo $settings->gdpr_address; ?>
-									<br><?php //echo $settings->gdpr_cap.' - '. $settings->gdpr_city; ?>
-									<br>Tel. <?php //echo $settings->gdpr_telefono; ?> -->
+									<strong><?= Yii::$app->name; ?></strong>
+									<br><?= $owner->address ?>
+									<br><?= $owner->cap.' - '. $owner->city ?>
+									<br>Tel. <?= $owner->phone ?>
 									<br><?php echo Yii::$app->params['adminEmail'] .' | '. Yii::$app->params['website']; ?>
 								</p>
 							</div>
