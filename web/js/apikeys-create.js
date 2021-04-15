@@ -1,6 +1,9 @@
 
 
-$("#apikeys-id_merchant").change(function() {
+
+
+
+$("#"+yiiApiOptions.controller+"-id_merchant").change(function() {
     var idMerchant = this.value;
     $.ajax({
         url: yiiApiOptions.getStores,
@@ -9,11 +12,11 @@ $("#apikeys-id_merchant").change(function() {
             id: idMerchant
         },
         beforeSend: function() {
-            $("#apikeys-id_store").html(yiiApiOptions.spinner);
+            $("#"+yiiApiOptions.controller+"-id_store").html(yiiApiOptions.spinner);
         },
         success: function(result) {
             console.log(result);
-            var my_list = $("#apikeys-id_store").empty();
+            var my_list = $("#"+yiiApiOptions.controller+"-id_store").empty();
             $.each(result, function(i, v){
                 my_list.append($("<option>").attr('value',i).text(v));
             });
@@ -40,8 +43,8 @@ var api = {
             complete: function (json) {
                 js = json.responseJSON;
 
-                $('#apikeys-public_key').val(js.public);
-                $('#apikeys-secret_key').val(js.secret);
+                $('#'+yiiApiOptions.controller+'-public_key').val(js.public);
+                $('#'+yiiApiOptions.controller+'-secret_key').val(js.secret);
                 $('#last-chance').show();
             }
         });

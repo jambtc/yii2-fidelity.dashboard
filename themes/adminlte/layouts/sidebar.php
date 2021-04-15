@@ -79,13 +79,13 @@ use yii\helpers\Url;
         $subarray = null;
         if (Yii::$app->user->id == 1){
             $subarray = [
-                ['label' => Yii::t('app','Owner'), 'url' => ['/owner/index'], 'icon' => 'paragraph'],
-                ['label' => Yii::t('app','Server host'), 'url' => ['/host/index'], 'icon' => 'server'],
-                ['label' => Yii::t('app','Blockchain'), 'url' => ['/blockchains/index'], 'icon' => 'link'],
-                ['label' => Yii::t('app','Poa Nodes'), 'url' => ['/nodes/index'], 'icon' => 'code-branch'],
-                ['label' => Yii::t('app','Social auth'), 'url' => ['/oauths/index'], 'icon' => 'handshake'],
-                ['label' => Yii::t('app','VAPID Keys'), 'url' => ['/vapid/index'], 'icon' => 'user-shield'],
-                ['label' => Yii::t('app','Rules Engine'), 'url' => ['/rulesengine/index'], 'icon' => 'pencil-ruler'],
+                // ['label' => Yii::t('app','Application'), 'url' => ['/settings/index'], 'icon' => 'server'],
+                ['label' => Yii::t('app','Owner'), 'url' => ['/settings/owner/index'], 'icon' => 'paragraph'],
+                ['label' => Yii::t('app','Server host'), 'url' => ['/settings/host/index'], 'icon' => 'server'],
+                ['label' => Yii::t('app','Blockchain'), 'url' => ['/settings/blockchains/index'], 'icon' => 'link'],
+                ['label' => Yii::t('app','Poa Nodes'), 'url' => ['/settings/nodes/index'], 'icon' => 'code-branch'],
+                ['label' => Yii::t('app','VAPID Keys'), 'url' => ['/settings/vapid/index'], 'icon' => 'user-shield'],
+                ['label' => Yii::t('app','Rules Engine'), 'url' => ['/settings/rules-engines/index'], 'icon' => 'pencil-ruler'],
             ];
         }
         if (Yii::$app->user->id != 1 && Yii::$app->user->identity->is_merchant == 1){
@@ -93,11 +93,13 @@ use yii\helpers\Url;
         }
         $subarray[] = ['label' => Yii::t('app','User account'), 'url' => ['/users/view','id'=>WebApp::encrypt(Yii::$app->user->id)], 'icon' => 'user'];
 
+        // $items[] = ['label' => 'Settings', 'header' => true],
+
         $items[] = [
-                'label' => Yii::t('app','Settings'),
-                'icon' => 'cog',
-                'items' => $subarray,
-            ];
+            'label' => Yii::t('app','Settings'),
+            'icon' => 'cog',
+            'items' => $subarray,
+        ];
 
 
         ?>

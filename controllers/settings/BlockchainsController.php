@@ -1,21 +1,18 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\settings;
 
 use Yii;
-use app\models\Apikeys;
-use app\models\search\ApikeysSearch;
+use app\models\Blockchains;
+use app\models\search\BlockchainsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
-use app\components\WebApp;
-use app\models\Merchants;
 
 /**
- * ApikeysController implements the CRUD actions for Apikeys model.
+ * BlockchainsController implements the CRUD actions for Blockchains model.
  */
-class ApikeysController extends Controller
+class BlockchainsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,29 +30,13 @@ class ApikeysController extends Controller
     }
 
     /**
-	 * Generate Api KEys for RULES ENGINE
-	 * @param
-	 */
-	public function actionGetApiKeys()
-	{
-        return Json::encode([
-			'public' => \Yii::$app->security->generateRandomString(48),
-			'secret' => \Yii::$app->security->generateRandomString(24),
-		]);
-	}
-
-    /**
-     * Lists all Apikeys models.
+     * Lists all Blockchains models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ApikeysSearch();
+        $searchModel = new BlockchainsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        if (Yii::$app->user->id != 1)
-            $dataProvider->query->andWhere(['=','id_merchant', Merchants::getIdByUser(Yii::$app->user->id)]);
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -64,7 +45,7 @@ class ApikeysController extends Controller
     }
 
     /**
-     * Displays a single Apikeys model.
+     * Displays a single Blockchains model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,21 +53,21 @@ class ApikeysController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel(WebApp::decrypt($id)),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Apikeys model.
+     * Creates a new Blockchains model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Apikeys();
+        $model = new Blockchains();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => WebApp::encrypt($model->id)]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -95,7 +76,7 @@ class ApikeysController extends Controller
     }
 
     /**
-     * Updates an existing Apikeys model.
+     * Updates an existing Blockchains model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,10 +84,10 @@ class ApikeysController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel(WebApp::decrypt($id));
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => WebApp::encrypt($model->id)]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -115,7 +96,7 @@ class ApikeysController extends Controller
     }
 
     /**
-     * Deletes an existing Apikeys model.
+     * Deletes an existing Blockchains model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -129,15 +110,15 @@ class ApikeysController extends Controller
     }
 
     /**
-     * Finds the Apikeys model based on its primary key value.
+     * Finds the Blockchains model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Apikeys the loaded model
+     * @return Blockchains the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Apikeys::findOne($id)) !== null) {
+        if (($model = Blockchains::findOne($id)) !== null) {
             return $model;
         }
 
