@@ -2,9 +2,15 @@
 
 use yii\helpers\Html;
 
+$darkmode = null;
+if (isset($_COOKIE['darkmode'])) {
+    $cookie = \yii\helpers\Json::decode($_COOKIE['darkmode']);
+    $darkmode = $cookie['navbar'];
+}
+
 ?>
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark">
+<nav class="main-header navbar navbar-expand <?= $darkmode ?>">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">

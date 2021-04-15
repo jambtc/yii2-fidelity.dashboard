@@ -10,6 +10,20 @@ use yii\helpers\Html;
 $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+
+$darkmode = null;
+if (isset($_COOKIE['darkmode'])) {
+    $cookie = \yii\helpers\Json::decode($_COOKIE['darkmode']);
+    $darkmode = $cookie['body'];
+}
+
+/*
+css-body -> 'dark-mode'
+css-sidebar-> 'sidebar-dark-primary'
+css-navbar -> 'navbar-dark'
+*/
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,7 +36,7 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
     <title><?= Yii::$app->name ?> | <?= Yii::$app->controller->id ?></title>
     <?php $this->head() ?>
 </head>
-<body class="dark-mode hold-transition sidebar-mini">
+<body class="<?= $darkmode ?> hold-transition sidebar-mini">
 <?php $this->beginBody() ?>
 
 <div class="wrapper">

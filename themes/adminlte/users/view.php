@@ -1,8 +1,12 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\Json;
+use yii\web\View;
 use yii\widgets\DetailView;
 use app\components\WebApp;
+use app\assets\CssAsset;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Users */
@@ -11,10 +15,32 @@ $this->title = Yii::t('app','User id: ') . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+
+$darkmode = [0=>Yii::t('app','Turn the light off'), 1=>Yii::t('app','Turn the light on')];
+$checked = [1=>null,0=>'checked="checked"'];
+$darkvalue = 0;
+if (isset($_COOKIE['darkmode'])) {
+    $darkvalue = 1;
+}
+
+$options = [
+    'spinner' => '<div class="button-spinner spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
+    'changeCssMode' => Url::to(['/users/change-css-mode']),
+];
+
+$this->registerJs(
+    "var yiiCssOptions = ".Json::htmlEncode($options).";",
+    View::POS_HEAD,
+    'yiiOptions'
+);
+
+CssAsset::register($this);
 ?>
 
+
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
                 <?php if (Yii::$app->session->hasFlash('errorSubscription')): ?>
@@ -23,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                       </div>
                 <?php endif; ?>
 
-
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle" src="css/images/anonymous.png" alt="User profile picture">
                 </div>
@@ -31,7 +56,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p class="text-muted text-center"><?= $model->username ?></p>
             </div>
         </div>
+    </div>
 
+    <?php if ($model->id == Yii::$app->user->id) : ?>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                    <input <?= $checked[$darkvalue] ?> type="checkbox" class="custom-control-input" id="cssmodeSwitch">
+                    <label class="custom-control-label" for="cssmodeSwitch"><?= $darkmode[$darkvalue] ?></label>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>
+<div class="row">
+    <div class="col-md-12">
         <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">About Me</h3>
@@ -46,8 +85,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         $merchant = [0=>Yii::t('app','Not merchant'),1=>Yii::t('app','Merchant')];
                         $color = [0=>'warning',1=>'success'];
                         $icon = [0=>'icon fas fa-exclamation-triangle',1=>'icon fas fa-check'];
-
-
                         //echo Yii::t('app','Account status is: '). $status[$model->status_activation_code];
                     ?>
                     <div class="col-md-3 col-sm-6 col-12">

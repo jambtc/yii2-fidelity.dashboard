@@ -1,10 +1,18 @@
 <?php
 use app\components\WebApp;
 use yii\helpers\Url;
+$darkmode = null;
+$brand_link = 'bg-light';
+if (isset($_COOKIE['darkmode'])) {
+    $cookie = \yii\helpers\Json::decode($_COOKIE['darkmode']);
+    $darkmode = $cookie['sidebar'];
+    $brand_link = null;
+
+}
 ?>
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar <?= $darkmode ?> elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= Yii::$app->homeUrl ?>" class="brand-link">
+    <a href="<?= Yii::$app->homeUrl ?>" class="brand-link <?= $brand_link ?>">
         <?=
         \yii\helpers\Html::img('@web/css/images/logo.png', [
             'alt' => Yii::$app->name,

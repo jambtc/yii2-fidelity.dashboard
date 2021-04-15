@@ -34,6 +34,26 @@ class UsersController extends Controller
     }
 
     /**
+	 * Generate Api KEys for RULES ENGINE
+	 * @param
+	 */
+	public function actionChangeCssMode()
+	{
+        if (isset($_COOKIE['darkmode'])) {
+            setcookie('darkmode', "");
+        } else {
+            setcookie('darkmode', \yii\helpers\Json::encode([
+                'body' => 'dark-mode',
+                'navbar' => 'navbar-dark',
+                'sidebar' => 'sidebar-dark-primary'
+            ]));
+
+        }
+
+        return true;
+	}
+
+    /**
      * Lists all Users models.
      * @return mixed
      */
