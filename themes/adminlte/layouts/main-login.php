@@ -25,11 +25,10 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
 <div class="login-box">
     <div class="login-logo">
         <a href="<?=Yii::$app->homeUrl?>">
-            <div class="text-center">
-                <img src="css/images/logo.png" alt="" width="120">
+            <div class="text-left">
+                <img src="css/images/logo.png" alt="" width="60">
+                <b><?= Yii::$app->name ?></b>
             </div>
-            <div class="form-divider"></div>
-            <b><?= Yii::$app->name ?></b>
         </a>
     </div>
     <!-- /.login-logo -->

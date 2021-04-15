@@ -45,13 +45,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         $status = [0=>Yii::t('app','Not active'),1=>Yii::t('app','Active')];
                         $merchant = [0=>Yii::t('app','Not merchant'),1=>Yii::t('app','Merchant')];
                         $color = [0=>'warning',1=>'success'];
+                        $icon = [0=>'icon fas fa-exclamation-triangle',1=>'icon fas fa-check'];
 
 
                         //echo Yii::t('app','Account status is: '). $status[$model->status_activation_code];
                     ?>
                     <div class="col-md-3 col-sm-6 col-12">
                         <div class="info-box shadow-sm">
-                            <span class="info-box-icon bg-<?= $color[$model->status_activation_code] ?>"><i class="far fa-flag"></i></span>
+                            <span class="info-box-icon bg-<?= $color[$model->status_activation_code] ?>">
+                                <i class="<?= $icon[$model->status_activation_code] ?>"></i>
+                            </span>
 
                             <div class="info-box-content">
                                 <span class="info-box-text"><?= Yii::t('app','Account status') ?></span>
@@ -63,7 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="col-md-3 col-sm-6 col-12">
                         <div class="info-box shadow-sm">
-                            <span class="info-box-icon bg-<?= $color[$model->is_merchant] ?>"><i class="far fa-flag"></i></span>
+                            <span class="info-box-icon bg-<?= $color[$model->is_merchant] ?>">
+                                <i class="<?= $icon[$model->is_merchant] ?>"></i>
+                            </span>
 
                             <div class="info-box-content">
                                 <span class="info-box-text"><?= Yii::t('app','User account') ?></span>
