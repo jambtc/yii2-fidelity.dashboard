@@ -73,12 +73,13 @@ CssAsset::register($this);
     <div class="col-md-12">
         <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+                <h3 class="card-title"><?= Yii::t('app','About Me') ?></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                  <strong><i class="fas fa-book mr-1"></i> <?= Yii::t('app','Status') ?></strong>
                   <div class="row">
-                    <strong><i class="fas fa-book mr-1"></i> Status</strong>
+
 
                     <?php
                         $status = [0=>Yii::t('app','Not active'),1=>Yii::t('app','Active')];
