@@ -17,6 +17,9 @@ use Yii;
  */
 class NotificationsReaders extends \yii\db\ActiveRecord
 {
+    const STATUS_READ = 1;
+    const STATUS_UNREAD = 0;
+    
     /**
      * {@inheritdoc}
      */

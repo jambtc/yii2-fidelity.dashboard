@@ -37,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'style' => 'max-width: 250px;'
                                         ]
                                     );
-                                },
+                            },
+                            'visible' => (Yii::$app->user->id == 1) ? true : false,    
                         ],
                         'notification.timestamp:datetime',
                         'notification.type',

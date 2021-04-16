@@ -2,7 +2,7 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+use app\assets\NotificationsAsset;
 use yii\helpers\Html;
 
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
@@ -17,13 +17,8 @@ if (isset($_COOKIE['darkmode'])) {
     $darkmode = $cookie['body'];
 }
 
-/*
-css-body -> 'dark-mode'
-css-sidebar-> 'sidebar-dark-primary'
-css-navbar -> 'navbar-dark'
-*/
 
-
+NotificationsAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

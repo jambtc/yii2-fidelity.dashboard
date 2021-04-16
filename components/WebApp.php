@@ -256,50 +256,50 @@ class WebApp extends Component
         switch (strtolower(trim($status))){
             //ricordati i case tutti minuscoli
             case 'alarm':
-                $color = 'bg-danger';
+                $color = 'text-danger';
                 break;
 
             case 'help':
-                $color = 'bg-success';
+                $color = 'text-success';
                 break;
 
             case 'fattura':
             case 'sending':
             case 'new':
-                $color = 'bg-dark';
+                $color = 'text-gray';
                 break;
 
             case 'failed':
             case 'invalid':
-                $color = 'bg-danger';
+                $color = 'text-danger';
                 break;
 
             case 'expired':
             case 'paidpartial':
-                $color = 'bg-warning';
+                $color = 'text-warning';
                 break;
 
             case 'complete':
             case 'paid':
             case 'confirmed':
             case 'sent':
-                $color = 'bg-success';
+                $color = 'text-success';
                 break;
 
             case 'paidover':
-                $color = 'bg-primary';
+                $color = 'text-primary';
                 break;
 
           case 'followed':
-              $color = "bg-success";
+              $color = "text-success";
               break;
 
           case 'unfollowed':
-                  $color = "bg-warning";
+                  $color = "text-warning";
                   break;
 
             default:
-                $color = 'bg-secondary';
+                $color = 'text-secondary';
         }
         return $color;
     }

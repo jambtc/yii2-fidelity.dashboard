@@ -1,7 +1,7 @@
 <?php
 use app\components\WebApp;
 use yii\helpers\Url;
-$darkmode = null;
+$darkmode = 'bg-white';
 $brand_link = 'bg-light';
 if (isset($_COOKIE['darkmode'])) {
     $cookie = \yii\helpers\Json::decode($_COOKIE['darkmode']);
