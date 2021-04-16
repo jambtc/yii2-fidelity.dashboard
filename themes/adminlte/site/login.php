@@ -39,7 +39,10 @@ $this->title = Yii::t('app','Login');
                 ]) ?>
             </div>
             <div class="col-4">
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block']) ?>
+                <?= Html::submitButton('Sign In', [
+                    'class' => 'btn btn-primary btn-block',
+                    'onclick' => 'javascript:saveOnDesktop();'
+                    ]) ?>
             </div>
         </div>
 

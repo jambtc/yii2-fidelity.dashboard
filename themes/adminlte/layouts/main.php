@@ -2,7 +2,6 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-use app\assets\NotificationsAsset;
 use yii\helpers\Html;
 
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
@@ -18,7 +17,8 @@ if (isset($_COOKIE['darkmode'])) {
 }
 
 
-NotificationsAsset::register($this);
+app\assets\NotificationsAsset::register($this);
+app\assets\ServiceWorkerAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,6 +27,9 @@ NotificationsAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Manifest Progressive Web App -->
+    <link rel="manifest" href="manifest.json">
+
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Yii::$app->name ?> | <?= Yii::$app->controller->id ?></title>
     <?php $this->head() ?>
@@ -41,6 +44,19 @@ NotificationsAsset::register($this);
 
     <!-- Main Sidebar Container -->
     <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
+
+    <div id="snackbar">
+        <?= Yii::t('app','A new version of this app is available.'); ?>
+
+            <?= Yii::t('app','Click'); ?>
+            <a id="reload">
+                <button type="button" class="btn btn-warning px-5">
+                    <?= Yii::t('app','here') ?>
+                </button>
+            </a>
+            <?= Yii::t('app',' to update.') ?>
+        
+    </div>
 
     <!-- Content Wrapper. Contains page content -->
     <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
