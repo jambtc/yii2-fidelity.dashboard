@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 use app\components\WebApp;
 use app\models\Merchants;
-
+use app\models\Blockchains;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\StoresSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'id_merchant',
 
                         // 'denomination',
+
                         [
                             'attribute' => 'denomination',
                             'format' => 'raw',
@@ -49,6 +50,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'bps_storeid',
                         'wallet_address',
+                        [
+                            'attribute' => 'id_blockchain',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                $blockchain = Blockchains::findOne($data->id_blockchain);
+                                return $blockchain->denomination;
+                            },
+                        ],
                         // 'derivedKey',
                         //'privateKey',
                         [

@@ -78,6 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <th><?= $model->getAttributeLabel('txhash') ?>:</th>
                                         <td class="text-break"><?= $model->txhash ?></td>
                                     </tr>
+                                    <tr>
+                                        <th><?= $model->getAttributeLabel('message') ?>:</th>
+                                        <td class="text-break"><?= $model->message ?></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

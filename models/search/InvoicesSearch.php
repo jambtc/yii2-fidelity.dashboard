@@ -18,7 +18,7 @@ class InvoicesSearch extends Invoices
     {
         return [
             [['id', 'id_user', 'id_pos', 'invoice_timestamp', 'expiration_timestamp'], 'integer'],
-            [['status', 'from_address', 'to_address', 'txhash'], 'safe'],
+            [['status', 'from_address', 'to_address', 'txhash', 'message'], 'safe'],
             [['price', 'received'], 'number'],
         ];
     }
@@ -71,6 +71,7 @@ class InvoicesSearch extends Invoices
         $query->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'from_address', $this->from_address])
             ->andFilterWhere(['like', 'to_address', $this->to_address])
+            ->andFilterWhere(['like', 'message', $this->message])
             ->andFilterWhere(['like', 'txhash', $this->txhash]);
 
         return $dataProvider;

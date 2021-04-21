@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         // 'id',
                         [
-                            'attribute' => 'blockchain_denomination',
+                            'attribute' => 'denomination',
                             'format' => 'raw',
                             'value' => function ($data) {
-                                return Html::a($data->blockchain_denomination, Url::toRoute(['view', 'id' => $data->id]));
+                                return Html::a($data->denomination, Url::toRoute(['view', 'id' => $data->id]));
                             },
                         ],
                         'invoice_expiration',

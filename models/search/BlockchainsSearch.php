@@ -18,7 +18,7 @@ class BlockchainsSearch extends Blockchains
     {
         return [
             [['id', 'invoice_expiration'], 'integer'],
-            [['blockchain_denomination', 'smart_contract_address', 'chain_id', 'url_block_explorer', 'smart_contract_abi', 'smart_contract_bytecode', 'sealer_address', 'sealer_private_key'], 'safe'],
+            [['denomination', 'smart_contract_address', 'decimals', 'chain_id', 'url_block_explorer', 'smart_contract_abi', 'smart_contract_bytecode', 'sealer_address', 'sealer_private_key'], 'safe'],
         ];
     }
 
@@ -60,9 +60,10 @@ class BlockchainsSearch extends Blockchains
         $query->andFilterWhere([
             'id' => $this->id,
             'invoice_expiration' => $this->invoice_expiration,
+            'decimals' => $this->decimals,
         ]);
 
-        $query->andFilterWhere(['like', 'blockchain_denomination', $this->blockchain_denomination])
+        $query->andFilterWhere(['like', 'denomination', $this->denomination])
             ->andFilterWhere(['like', 'smart_contract_address', $this->smart_contract_address])
             ->andFilterWhere(['like', 'chain_id', $this->chain_id])
             ->andFilterWhere(['like', 'url_block_explorer', $this->url_block_explorer])

@@ -23,15 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'attributes' => [
                         // 'id',
-                        // 'blockchain_denomination',
+                        // 'denomination',
                         [
-                            'attribute' => 'blockchain_denomination',
+                            'attribute' => 'denomination',
                             'type' => 'raw',
-                            'value' => $model->blockchain_denomination,
+                            'value' => $model->denomination,
                             'contentOptions' => ['style' => 'width:75%;']
                         ],
                         'invoice_expiration',
                         'smart_contract_address',
+                        'decimals',
                         'chain_id',
                         'url_block_explorer:url',
                         // 'smart_contract_abi',

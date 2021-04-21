@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\Merchants;
+use app\models\Blockchains;
 use app\components\WebApp;
 
 /* @var $this yii\web\View */
@@ -11,6 +12,7 @@ use app\components\WebApp;
 /* @var $form yii\widgets\ActiveForm */
 
 $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
+$blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination');
 
 ?>
 
@@ -25,6 +27,8 @@ $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
     <?php if (Yii::$app->user->id == 1): ?>
         <?= $form->field($model, 'id_merchant')->dropDownList($merchants, ['options' => ['readonly' => !$model->isNewRecord]]) ?>
     <?php endif; ?>
+
+    <?= $form->field($model, 'id_blockchain')->dropDownList($blockchains, ['options' => ['readonly' => !$model->isNewRecord]]) ?>
 
     <?= $form->field($model, 'denomination')->textInput(['maxlength' => true]) ?>
 

@@ -17,7 +17,7 @@ class NodesSearch extends Nodes
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'id_blockchain'], 'integer'],
             [['url', 'port'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class NodesSearch extends Nodes
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'id_blockchain' => $this->id_blockchain,
         ]);
 
         $query->andFilterWhere(['like', 'url', $this->url])

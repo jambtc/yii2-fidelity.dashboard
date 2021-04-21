@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                         ],
                         'port',
+                        'id_blockchain'
 
                         // ['class' => 'yii\grid\ActionColumn'],
                     ],

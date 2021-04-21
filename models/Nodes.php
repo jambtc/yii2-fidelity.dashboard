@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $url
  * @property string $port
+ * @property int|null $id_blockchain
  */
 class Nodes extends \yii\db\ActiveRecord
 {
@@ -28,8 +29,10 @@ class Nodes extends \yii\db\ActiveRecord
     {
         return [
             [['url', 'port'], 'required'],
+            [['id_blockchain'], 'integer'],
             [['url'], 'string', 'max' => 255],
             [['port'], 'string', 'max' => 50],
+            [['id_blockchain'], 'exist', 'skipOnError' => true, 'targetClass' => Blockchains::className(), 'targetAttribute' => ['id_blockchain' => 'id']],
         ];
     }
 
@@ -42,7 +45,18 @@ class Nodes extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'url' => Yii::t('app', 'Url'),
             'port' => Yii::t('app', 'Port'),
+            'id_blockchain' => Yii::t('app', 'Id Blockchain'),
         ];
+    }
+
+    /**
+     * Gets query for [[Blockchain]].
+     *
+     * @return \yii\db\ActiveQuery|\app\models\query\BlockchainsQuery
+     */
+    public function getBlockchain()
+    {
+        return $this->hasOne(Blockchains::className(), ['id' => 'id_blockchain']);
     }
 
     /**

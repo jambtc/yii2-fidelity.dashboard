@@ -10,6 +10,7 @@ use app\components\WebApp;
  *
  * @property int $id
  * @property int $id_merchant
+ * @property int $id_blockchain
  * @property string|null $denomination
  * @property string|null $bps_storeid
  * @property string|null $wallet_address
@@ -17,6 +18,7 @@ use app\components\WebApp;
  * @property string|null $privateKey
  *
  * @property Merchants $merchant
+ * @property Blockchains $blockchain
  */
 class Stores extends \yii\db\ActiveRecord
 {
@@ -35,10 +37,11 @@ class Stores extends \yii\db\ActiveRecord
     {
         return [
             [['id_merchant','denomination'], 'required'],
-            [['id_merchant'], 'integer'],
+            [['id_merchant','id_blockchain'], 'integer'],
             [['denomination', 'bps_storeid'], 'string', 'max' => 255],
             [['wallet_address', 'derivedKey', 'privateKey'], 'string', 'max' => 500],
             [['id_merchant'], 'exist', 'skipOnError' => true, 'targetClass' => Merchants::className(), 'targetAttribute' => ['id_merchant' => 'id']],
+            [['id_blockchain'], 'exist', 'skipOnError' => true, 'targetClass' => Blockchains::className(), 'targetAttribute' => ['id_blockchain' => 'id']],
         ];
     }
 
@@ -50,6 +53,7 @@ class Stores extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'id_merchant' => Yii::t('app', 'Id Merchant'),
+            'id_blockchain' => Yii::t('app', 'Id Blockchain'),
             'denomination' => Yii::t('app', 'Denomination'),
             'bps_storeid' => Yii::t('app', 'Bps Storeid'),
             'wallet_address' => Yii::t('app', 'Wallet Address'),
@@ -66,6 +70,16 @@ class Stores extends \yii\db\ActiveRecord
     public function getMerchant()
     {
         return $this->hasOne(Merchants::className(), ['id' => 'id_merchant']);
+    }
+
+    /**
+     * Gets query for [[Blockchain]].
+     *
+     * @return \yii\db\ActiveQuery|\app\models\query\BlockchainsQuery
+     */
+    public function getBlockchain()
+    {
+        return $this->hasOne(Blockchains::className(), ['id' => 'id_blockchain']);
     }
 
     /**

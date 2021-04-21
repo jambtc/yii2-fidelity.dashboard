@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 use app\components\WebApp;
 use app\models\Merchants;
+use app\models\Blockchains;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Stores */
@@ -52,6 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'denomination',
                         'bps_storeid',
                         'wallet_address',
+                        [
+                            'attribute' => 'id_blockchain',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                $blockchain = Blockchains::findOne($data->id_blockchain);
+                                return $blockchain->denomination;
+                            },
+                        ],
                         // 'derivedKey',
                         // 'privateKey',
                     ],

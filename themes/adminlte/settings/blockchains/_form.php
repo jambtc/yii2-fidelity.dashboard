@@ -15,11 +15,13 @@ if (!$model->isNewRecord)
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'blockchain_denomination')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'denomination')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'invoice_expiration')->textInput() ?>
 
     <?= $form->field($model, 'smart_contract_address')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'decimals')->numberInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'chain_id')->textInput(['maxlength' => true]) ?>
 

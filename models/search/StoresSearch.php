@@ -17,7 +17,7 @@ class StoresSearch extends Stores
     public function rules()
     {
         return [
-            [['id', 'id_merchant'], 'integer'],
+            [['id', 'id_merchant', 'id_blockchain'], 'integer'],
             [['denomination', 'bps_storeid', 'wallet_address', 'derivedKey', 'privateKey'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class StoresSearch extends Stores
         $query->andFilterWhere([
             'id' => $this->id,
             'id_merchant' => $this->id_merchant,
+            'id_blockchain' => $this->id_blockchain,
         ]);
 
         $query->andFilterWhere(['like', 'denomination', $this->denomination])
