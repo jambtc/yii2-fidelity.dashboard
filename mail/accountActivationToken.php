@@ -82,9 +82,9 @@ $URL = 'https://'.$_SERVER['HTTP_HOST'].Url::to(['site/activate','id'=>WebApp::e
 							<div>
 								<p style="font-size: 14px;">
 									<strong><?= Yii::$app->name; ?></strong>
-									<br><?= $owner->address ?>
-									<br><?= $owner->cap.' - '. $owner->city ?>
-									<br>Tel. <?= $owner->phone ?>
+									<br><?php isset($owner->address) ? echo $owner->address : echo '' ?>
+									<br><?php isset($owner->address) ? echo $owner->cap.' - '. $owner->city : echo '' ?>
+									<br>Tel. <?php isset($owner->address) ? echo $owner->phone : '' ?>
 									<br><?php echo Yii::$app->params['adminEmail'] .' | '. Yii::$app->params['website']; ?>
 								</p>
 							</div>
