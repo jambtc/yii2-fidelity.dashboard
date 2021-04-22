@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use app\components\WebApp;
 
 /**
  * This is the model class for table "blockchains".
@@ -12,13 +11,14 @@ use app\components\WebApp;
  * @property string $denomination
  * @property int $invoice_expiration
  * @property string $smart_contract_address
+ * @property int|null $decimals
  * @property string $chain_id
  * @property string $url_block_explorer
  * @property string $smart_contract_abi
  * @property string $smart_contract_bytecode
  * @property string $sealer_address
  * @property string $sealer_private_key
-
+ *
  * @property Nodes[] $nodes
  * @property Stores[] $stores
  */
@@ -39,8 +39,9 @@ class Blockchains extends \yii\db\ActiveRecord
     {
         return [
             [['denomination', 'invoice_expiration', 'smart_contract_address', 'chain_id', 'url_block_explorer', 'smart_contract_abi', 'smart_contract_bytecode', 'sealer_address', 'sealer_private_key'], 'required'],
-            [['invoice_expiration','decimals'], 'integer'],
-            [['denomination', 'smart_contract_address', 'url_block_explorer', 'smart_contract_abi', 'smart_contract_bytecode', 'sealer_address', 'sealer_private_key'], 'string', 'max' => 255],
+            [['invoice_expiration', 'decimals'], 'integer'],
+            [['smart_contract_abi', 'smart_contract_bytecode'], 'string'],
+            [['denomination', 'smart_contract_address', 'url_block_explorer', 'sealer_address', 'sealer_private_key'], 'string', 'max' => 255],
             [['chain_id'], 'string', 'max' => 50],
         ];
     }
@@ -52,7 +53,7 @@ class Blockchains extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'denomination' => Yii::t('app', 'Blockchain Denomination'),
+            'denomination' => Yii::t('app', 'Denomination'),
             'invoice_expiration' => Yii::t('app', 'Invoice Expiration'),
             'smart_contract_address' => Yii::t('app', 'Smart Contract Address'),
             'decimals' => Yii::t('app', 'Decimals'),
@@ -92,11 +93,5 @@ class Blockchains extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\models\query\BlockchainsQuery(get_called_class());
-    }
-
-    public function beforeSave($insert) {
-        $this->sealer_private_key = WebApp::encrypt($this->sealer_private_key);
-
-        return parent::beforeSave($insert);
     }
 }
