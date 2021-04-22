@@ -125,12 +125,12 @@ class Users extends \yii\db\ActiveRecord
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
-    public function beforeSave($insert) {
-        if($this->isNewRecord)
-            $this->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
-
-        return parent::beforeSave($insert);
-    }
+    // public function beforeSave($insert) {
+    //     if($this->isNewRecord)
+    //         $this->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+    //
+    //     return parent::beforeSave($insert);
+    // }
 
     /**
      * Finds out if password reset token is valid
@@ -181,7 +181,8 @@ class Users extends \yii\db\ActiveRecord
      */
     public function setPassword($password)
     {
-        $this->password = $password; // l'hash viene generato befor-save
+        //$this->password = $password; // l'hash viene generato befor-save
+        $this->password = \Yii::$app->getSecurity()->generatePasswordHash($password);
     }
     /**
      * Removes password reset token

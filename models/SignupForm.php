@@ -110,7 +110,8 @@ class SignupForm extends \yii\db\ActiveRecord
 
             $user = new Users();
             $user->username = $this->username;
-            $user->password = $this->password;
+            // $user->password = $this->password;
+            $user->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
             $user->activation_code = $nonce;
             $user->status_activation_code = 0;
             $user->authKey = $secretkey;
