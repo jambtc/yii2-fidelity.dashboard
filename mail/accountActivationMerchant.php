@@ -78,9 +78,9 @@ $URL = Yii::$app->urlManager->createAbsoluteUrl(['site/index']);
 							<div>
 								<p style="font-size: 14px;">
 									<strong><?= Yii::$app->name; ?></strong>
-									<!-- <br><?= $owner->address ?>
-									<br><?= $owner->cap.' - '. $owner->city ?>
-									<br>Tel. <?= $owner->phone ?> -->
+									<br><?= isset($owner->address) ? $owner->address : null ?>
+									<br><?= isset($owner->cap) && isset($owner->city) ? $owner->cap.' - '. $owner->city : null?>
+									<br>Tel. <?= isset($owner->phone) ? $owner->phone : null ?>
 									<br><?php echo Yii::$app->params['adminEmail'] .' | '. Yii::$app->params['website']; ?>
 								</p>
 							</div>
