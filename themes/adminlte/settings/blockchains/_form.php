@@ -21,7 +21,10 @@ if (!$model->isNewRecord)
 
     <?= $form->field($model, 'smart_contract_address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'decimals')->numberInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'decimals')->textInput([
+                                 'type' => 'number',
+                                 'maxlength' => true
+                            ]) ?>
 
     <?= $form->field($model, 'chain_id')->textInput(['maxlength' => true]) ?>
 
