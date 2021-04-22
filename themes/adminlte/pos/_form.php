@@ -10,20 +10,20 @@ use app\models\Merchants;
 use app\models\Stores;
 use app\assets\PosAsset;
 
-
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Pos */
 /* @var $form yii\widgets\ActiveForm */
 
-$merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
-$merchants[0] = '';
-asort($merchants);
+if (Yii::$app->user->id == 1) {
+    $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
+    $merchants[0] = '';
+    asort($merchants);
 
-if (Yii::$app->user->id == 1)
-    $stores = [0=>''];
-else
+} else {
+    $merchants_id = Merchants::getIdByUser(Yii::$app->user->id);
     $stores = ArrayHelper::map(Stores::find()->all(), 'id', 'denomination');
+}
+
 
 
 $options = [
@@ -51,6 +51,10 @@ PosAsset::register($this);
 
     <?php if (Yii::$app->user->id == 1): ?>
         <?= $form->field($model, 'id_merchant')->dropDownList($merchants) ?>
+
+    <?php else: ?>
+
+    <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchants_id])->label(false) ?>
     <?php endif; ?>
 
     <?= $form->field($model, 'id_store')->dropDownList($stores) ?>
