@@ -126,7 +126,8 @@ class Users extends \yii\db\ActiveRecord
     }
 
     public function beforeSave($insert) {
-        $this->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
+        if($this->isNewRecord)
+            $this->password = \Yii::$app->getSecurity()->generatePasswordHash($this->password);
 
         return parent::beforeSave($insert);
     }
