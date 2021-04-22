@@ -11,7 +11,12 @@ use app\components\WebApp;
 /* @var $model app\models\Stores */
 /* @var $form yii\widgets\ActiveForm */
 
-$merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
+
+if (Yii::$app->user->id == 1) {
+    $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
+} else {
+    $merchants_id = Merchants::getIdByUser(Yii::$app->user->id);
+}
 $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination');
 
 ?>
@@ -26,6 +31,11 @@ $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination'
 
     <?php if (Yii::$app->user->id == 1): ?>
         <?= $form->field($model, 'id_merchant')->dropDownList($merchants, ['options' => ['readonly' => !$model->isNewRecord]]) ?>
+    <?php else: ?>
+
+    <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchants_id])->label(false) ?>
+
+
     <?php endif; ?>
 
     <?= $form->field($model, 'id_blockchain')->dropDownList($blockchains, ['options' => ['readonly' => !$model->isNewRecord]]) ?>

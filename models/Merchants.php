@@ -81,7 +81,7 @@ class Merchants extends \yii\db\ActiveRecord
     }
 
 
-
+    // get merchant model from user id 
     public function getIdByUser($id) {
         $model = self::find()
             ->andWhere(['id_user'=>$id])
