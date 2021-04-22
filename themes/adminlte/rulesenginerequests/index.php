@@ -24,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'id',
                         'timestamp:datetime',
                         'id_merchant',
+                        'id_store',
                         'payload:ntext',
                         'sent',
 

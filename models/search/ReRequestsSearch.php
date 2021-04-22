@@ -17,7 +17,7 @@ class ReRequestsSearch extends ReRequests
     public function rules()
     {
         return [
-            [['id', 'timestamp', 'id_merchant', 'sent'], 'integer'],
+            [['id', 'timestamp', 'id_merchant', 'id_store', 'sent'], 'integer'],
             [['payload'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class ReRequestsSearch extends ReRequests
             'id' => $this->id,
             'timestamp' => $this->timestamp,
             'id_merchant' => $this->id_merchant,
+            'id_store' => $this->id_store,
             'sent' => $this->sent,
         ]);
 

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
+                    // 'filterModel' => $searchModel,
                     'tableOptions' => ['class' => 'table m-0 table-striped'],
                     'columns' => [
                         // ['class' => 'yii\grid\SerialColumn'],
@@ -45,7 +45,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'app',
                         'controller',
                         'action',
-                        'description:ntext',
+                        // 'description:ntext',
+                        [
+                            'attribute' => 'description',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return $data->description;
+                            },
+                        ],
                         'die',
 
                         // ['class' => 'yii\grid\ActionColumn'],

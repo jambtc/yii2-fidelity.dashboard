@@ -8,6 +8,8 @@ use app\models\search\ReRequestsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+
 
 /**
  * ReRequestsController implements the CRUD actions for ReRequests model.
@@ -35,8 +37,19 @@ class RulesenginerequestsController extends Controller
      */
     public function actionIndex()
     {
+        $query = ReRequests::find()
+            ->orderBy(['id' => SORT_DESC]);
+
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
         $searchModel = new ReRequestsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
