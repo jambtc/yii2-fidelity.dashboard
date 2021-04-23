@@ -48,13 +48,15 @@ $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination'
     }
     ?>
 
-    <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true,'readonly' => !$model->isNewRecord])->label(Yii::t('app','Seed words')) ?>
+    <p class="text-info "><?= Yii::t('app','This seed must consist of 12 words.') ?> </p>
     <div class="invalid-feedback alert alert-danger" id="seed-error" ></div>
 
     <?= $form->field($model, 'wallet_address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
     <?= $form->field($model, 'privateKey')->hiddenInput(['maxlength' => true])->label(false) ?>
 
     <div class="form-group">
+        <?= Html::Button(Yii::t('app', 'Generate a new seed'), ['class' => 'btn btn-info btn-generateSeed']) ?>
         <?= Html::Button(Yii::t('app', 'Generate address'), ['class' => 'btn btn-warning btn-derivedKey']) ?>
 
         <?= Html::submitButton(Yii::t('app', 'Save'), [

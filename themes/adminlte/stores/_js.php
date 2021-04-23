@@ -10,7 +10,8 @@ $options = [
     'invalidSeed12Word' => Yii::t('app','Seed hasn\'t 12 words! Words inserted are: '),
     'validSeedMessage' => Yii::t('app','Seed is correct!'),
     'confirmSeedMessage' => Yii::t('app','Check the wallet address derived from the seed you have written. Your address is:'),
-    'spinner' => '<div class="button-spinner spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
+    'spinner' => '<div class="button-spinner spinner-border text-primary" style="width:1.3rem; height:1.3rem;" role="status"><span class="sr-only">Loading...</span></div>',
+    'spinner2' => '<div class="button-spinner spinner-border text-light" style="width:1.3rem; height:1.3rem;" role="status"><span class="sr-only">Loading...</span></div>',
 ];
 $this->registerJs(
     "var yiiOptions = ".\yii\helpers\Json::htmlEncode($options).";",
@@ -45,9 +46,22 @@ $wallet_restore = <<<JS
         $('#seed-error').show().text(yiiOptions.validSeedMessage);
     });
 
+
+    // genera il nuovo seed
+    var generateSeedButton = document.querySelector('.btn-generateSeed');
+    generateSeedButton.addEventListener('click', function(event){
+        $('.btn-generateSeed').html(yiiOptions.spinner2);
+
+        var password = generateEntropy(64);
+    	seed = lw.keystore.generateRandomSeed(password);
+
+  		console.log('[Stores]: seed valido', seed);
+  		initializeVault(password,seed);
+  	});
+
     // genera la private key dal seed
-    var checkButton = document.querySelector('.btn-derivedKey');
-    checkButton.addEventListener('click', function(event){
+    var derivedKeyButton = document.querySelector('.btn-derivedKey');
+    derivedKeyButton.addEventListener('click', function(event){
 
   		seed = $.trim($('#stores-derivedkey').val()).toLowerCase();
   		if (WordCount(seed) != 12 || !(isSeedValid(seed)) ){
@@ -120,13 +134,16 @@ $wallet_restore = <<<JS
 
                             $('#stores-wallet_address').val(address);
                             $('#stores-privatekey').val(privateKey);
+                            $('#stores-derivedkey').val(seed);
 
+                            $('#stores-derivedkey').prop('readonly',true);
                             $('#seed-error').removeClass('alert-danger');
                             $('#btn-save').removeClass('disabled');
                             $('#btn-save').prop('disabled',false);
                             $('#seed-error').addClass('alert-success');
                             $('#seed-error').show().html(yiiOptions.confirmSeedMessage+' '+address);
                             $('.btn-derivedKey').hide('');
+                            $('.btn-generateSeed').hide('');
                         }
                     )
     		});

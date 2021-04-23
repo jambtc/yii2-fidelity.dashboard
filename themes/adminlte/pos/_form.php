@@ -20,8 +20,8 @@ if (Yii::$app->user->id == 1) {
     asort($merchants);
 
 } else {
-    $merchants_id = Merchants::getIdByUser(Yii::$app->user->id);
-    $stores = ArrayHelper::map(Stores::find()->all(), 'id', 'denomination');
+    $merchant_id = Merchants::getIdByUser(Yii::$app->user->id);
+    $stores = ArrayHelper::map(Stores::find()->where(['id_merchant'=>$merchant_id])->all(), 'id', 'denomination');
 }
 
 
@@ -54,7 +54,7 @@ PosAsset::register($this);
 
     <?php else: ?>
 
-    <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchants_id])->label(false) ?>
+    <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchant_id])->label(false) ?>
     <?php endif; ?>
 
     <?= $form->field($model, 'id_store')->dropDownList($stores) ?>
