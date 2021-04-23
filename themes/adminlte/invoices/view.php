@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> <?= Yii::t('app','Invoices id:') ?></h5>
-              <?= $this->title ?>
+              <?= Html::a($this->title, Yii::$app->params['pos.domain'].Url::to(['/qrcode/view','id'=>$this->title]), ['target'=>'_blank']) ?>
             </div>
 
             <div class="invoice p-3 mb-3">
