@@ -42,6 +42,7 @@ class NotificationsReadersSearch extends NotificationsReaders
     {
         $query = NotificationsReaders::find()
             ->joinWith(['notification'])
+            ->orderBy(['id' => SORT_DESC])
         ;
 
         // add conditions that should always apply here

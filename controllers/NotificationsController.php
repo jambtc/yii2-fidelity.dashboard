@@ -43,29 +43,6 @@ class NotificationsController extends Controller
         // echo '<pre>'.print_r(Yii::$app->request->queryParams,true);exit;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         //
-        // $reader = new NotificationsReaders
-        //
-        // $dataProvider = NotificationsReaders::find()
-        //  ->getNotification()
-        //     // ->select('notifications_readers.*')
-        //     // ->leftJoin('notifications', '`notifications`.`id` = `notifications_readers`.`id_notification`')
-        //     // ->where(['notifications_readers.id_user' => Yii::$app->user->id])
-        //     // ->with('notifications')
-        //     ->all();
-        //
-        // echo '<pre>'.print_r($dataProvider,true);exit;
-
-
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => NotificationsReaders::find()
-        //         ->getNotification()
-        //         ->getUser()
-        //                 // ->select('notifications_readers.*')
-        //                 // ->leftJoin('notifications', '`notifications`.`id` = `notifications_readers`.`id_notification`')
-        //                 // ->where(['notifications_readers.id_user' => Yii::$app->user->id])
-        //                 // ->with('notifications')
-        //
-        // ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -131,9 +108,13 @@ class NotificationsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
+        //echo '<pre>'.print_r($_POST,true);
+        $json = json_decode($_POST['keys']);
+
+        foreach ($json as $idx => $key)
+            $this->findModel($key)->delete();
 
         return $this->redirect(['index']);
     }

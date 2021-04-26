@@ -108,6 +108,16 @@ class Invoices extends \yii\db\ActiveRecord
         foreach ($provider->getModels() as $item) {
             $total += $item[$columnName];
         }
-      return $total;
+        return $total;
+    }
+
+    public static function countComplete($provider)
+    {
+        $total = 0;
+        foreach ($provider->getModels() as $item) {
+            if ($item->status == 'complete')
+                $total ++;
+        }
+        return $total;
     }
 }

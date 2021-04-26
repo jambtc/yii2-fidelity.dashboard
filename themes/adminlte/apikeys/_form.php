@@ -14,19 +14,20 @@ use app\assets\ApikeysAsset;
 /* @var $model app\models\Apikeys */
 /* @var $form yii\widgets\ActiveForm */
 
-$merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
-$merchants[0] = '';
-asort($merchants);
+if (Yii::$app->user->id == 1) {
+    $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
+    $merchants[0] = '';
+    asort($merchants);
+} else {
+    $merchant_id = Merchants::getIdByUser(Yii::$app->user->id);
+    $stores = ArrayHelper::map(Stores::find()->where(['id_merchant'=>$merchant_id])->all(), 'id', 'denomination');
+}
 
-if (Yii::$app->user->id == 1)
-    $stores = [0=>''];
-else
-    $stores = ArrayHelper::map(Stores::find()->all(), 'id', 'denomination');
 
 
 $options = [
     'controller' => 'apikeys',
-    'spinner' => '<div class="button-spinner spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
+    'spinner' => '<div class="button-spinner spinner-border text-primary" style="width:1.3rem; height:1.3rem;" role="status"><span class="sr-only">Loading...</span></div>',
     'getStores' => Url::to(['/pos/stores-list']),
     'getApiKeys' => Url::to(['/apikeys/get-api-keys']),
 ];
@@ -51,13 +52,11 @@ ApikeysAsset::register($this);
     <?php if (Yii::$app->user->id == 1): ?>
         <?= $form->field($model, 'id_merchant')->dropDownList($merchants) ?>
     <?php else: ?>
-        <?= $form->field($model, 'id_merchant')->hiddenInput([
-            'value' => Merchants::getIdByUser(Yii::$app->user->id)
-            ])->label(false)
-            ?>
+        <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchant_id])->label(false) ?>
     <?php endif; ?>
 
     <?= $form->field($model, 'id_store')->dropDownList($stores) ?>
+
 
     <?= $form->field($model, 'denomination')->textInput(['maxlength' => true]) ?>
 

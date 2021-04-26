@@ -27,7 +27,7 @@ if (Yii::$app->user->id == 1) {
 
 
 $options = [
-    'spinner' => '<div class="button-spinner spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>',
+    'spinner' => '<div class="button-spinner spinner-border text-primary" style="width:1.3rem; height:1.3rem;" role="status"><span class="sr-only">Loading...</span></div>',
     'getStores' => Url::to(['/pos/stores-list']),
 ];
 
@@ -51,10 +51,8 @@ PosAsset::register($this);
 
     <?php if (Yii::$app->user->id == 1): ?>
         <?= $form->field($model, 'id_merchant')->dropDownList($merchants) ?>
-
     <?php else: ?>
-
-    <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchant_id])->label(false) ?>
+        <?= $form->field($model, 'id_merchant')->hiddenInput(['value' => $merchant_id])->label(false) ?>
     <?php endif; ?>
 
     <?= $form->field($model, 'id_store')->dropDownList($stores) ?>

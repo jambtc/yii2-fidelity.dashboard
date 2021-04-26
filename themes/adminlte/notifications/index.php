@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 use app\components\WebApp;
 use app\models\Users;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\NotificationsSearch */
@@ -12,15 +13,74 @@ use app\models\Users;
 
 $this->title = Yii::t('app', 'Notifications');
 $this->params['breadcrumbs'][] = $this->title;
+
+$deleteUrl = Url::to(['/notifications/delete']);
+$deleteMessage = Yii::t('app','Are you sure you want to delete selected items?');
+
+$transget = <<<JS
+
+
+    $(function(){
+        // intercetta il pulsante Remove PIN e mostra la schermata di inserimento pin
+        var button = document.querySelector('.btn-delete');
+        button.addEventListener('click', function(){
+            if (confirm('{$deleteMessage}')) {
+                var keys = $('#notifications-form').yiiGridView('getSelectedRows');
+                console.log('[delete] valori selezionati:',keys);
+                $.ajax({
+                    url: '{$deleteUrl}',
+                    data: {
+                        keys: JSON.stringify(keys),
+                    },
+                    type: "POST",
+                    success: function(result) {
+                        // reload page from redirect
+                    }
+                });
+            }
+
+
+
+        });
+    });
+JS;
+
+$this->registerJs(
+
+    $transget,
+    yii\web\View::POS_READY, //POS_END
+    'transget'
+);
 ?>
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
+                <?php $form = ActiveForm::begin(); ?>
+                <p>
+                    <?php
+                    if ($dataProvider->totalCount >0) { ?>
+                        <?= Html::button(Yii::t('app', 'Delete'), [
+                            'class' => 'btn btn-danger btn-delete',
+                            // 'data' => [
+                            //     'confirm' => Yii::t('app', 'Are you sure you want to delete selected items?'),
+                            //     'method' => 'post',
+                            // ],
+                        ]) ?>
+                    <?php } ?>
+
+                </p>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
+                    'id' => 'notifications-form',
                     // 'filterModel' => $searchModel,
                     'columns' => [
+                        [
+                            'class' => 'yii\grid\CheckboxColumn',
+                            'name' => 'id',
+                        ],
                         // ['class' => 'yii\grid\SerialColumn'],
 
                         // 'id',
@@ -38,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ]
                                     );
                             },
-                            'visible' => (Yii::$app->user->id == 1) ? true : false,    
+                            'visible' => (Yii::$app->user->id == 1) ? true : false,
                         ],
                         'notification.timestamp:datetime',
                         'notification.type',
@@ -50,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
-
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
