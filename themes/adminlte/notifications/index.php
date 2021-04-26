@@ -17,39 +17,37 @@ $this->params['breadcrumbs'][] = $this->title;
 $deleteUrl = Url::to(['/notifications/delete']);
 $deleteMessage = Yii::t('app','Are you sure you want to delete selected items?');
 
-$transget = <<<JS
+$deleting = <<<JS
 
 
     $(function(){
         // intercetta il pulsante Remove PIN e mostra la schermata di inserimento pin
-        var button = document.querySelector('.btn-delete');
-        button.addEventListener('click', function(){
-            if (confirm('{$deleteMessage}')) {
-                var keys = $('#notifications-form').yiiGridView('getSelectedRows');
-                console.log('[delete] valori selezionati:',keys);
-                $.ajax({
-                    url: '{$deleteUrl}',
-                    data: {
-                        keys: JSON.stringify(keys),
-                    },
-                    type: "POST",
-                    success: function(result) {
-                        // reload page from redirect
-                    }
-                });
-            }
-
-
-
-        });
+        if ($('.btn-delete').length){
+            var deleteNotificationButton = document.querySelector('.btn-delete');
+            deleteNotificationButton.addEventListener('click', function(){
+                if (confirm('{$deleteMessage}')) {
+                    var keys = $('#notifications-form').yiiGridView('getSelectedRows');
+                    console.log('[delete] valori selezionati:',keys);
+                    $.ajax({
+                        url: '{$deleteUrl}',
+                        data: {
+                            keys: JSON.stringify(keys),
+                        },
+                        type: "POST",
+                        success: function(result) {
+                            // reload page from redirect
+                        }
+                    });
+                }
+            });
+        }
     });
 JS;
 
 $this->registerJs(
-
-    $transget,
+    $deleting,
     yii\web\View::POS_READY, //POS_END
-    'transget'
+    'deleting'
 );
 ?>
 
@@ -58,7 +56,6 @@ $this->registerJs(
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <?php $form = ActiveForm::begin(); ?>
                 <p>
                     <?php
                     if ($dataProvider->totalCount >0) { ?>
@@ -110,7 +107,6 @@ $this->registerJs(
                         // ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
-                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
