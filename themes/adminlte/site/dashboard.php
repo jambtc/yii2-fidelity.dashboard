@@ -8,14 +8,14 @@
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-4 col-4">
                 <?= $this->render('templates/total_sales',['dataProvider'=>$dataProvider]); ?>
             </div>
-            <div class="col-lg-3 col-3">
+            <div class="col-lg-4 col-4">
                 <?= $this->render('templates/total_tokens',['dataProvider'=>$dataProvider]); ?>
             </div>
             <?php if (Yii::$app->user->id == 1): ?>
-                <div class="col-lg-3 col-3">
+                <div class="col-lg-4 col-4">
                     <?= $this->render('templates/total_users',['dataProvider'=>$dataProvider]); ?>
                 </div>
             <?php endif; ?>

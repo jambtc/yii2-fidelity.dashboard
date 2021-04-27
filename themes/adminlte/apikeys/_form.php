@@ -18,6 +18,7 @@ if (Yii::$app->user->id == 1) {
     $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
     $merchants[0] = '';
     asort($merchants);
+    $stores = [];
 } else {
     $merchant_id = Merchants::getIdByUser(Yii::$app->user->id);
     $stores = ArrayHelper::map(Stores::find()->where(['id_merchant'=>$merchant_id])->all(), 'id', 'denomination');

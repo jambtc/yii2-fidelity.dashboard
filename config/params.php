@@ -29,6 +29,7 @@ return [
     * set the domain name to switch from dashboard and pos
     */
     'pos.domain' => $secrets['pos.domain'],
+    'api.domain' => $secrets['api.domain'],
 
 
 ];

@@ -66,6 +66,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         'denomination',
                         'public_key',
+                        [
+                            'attribute' => 'id_store',
+                            'label' => 'Woocommerce link',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                $id = WebApp::encrypt($data->id_store);
+                                $store = Stores::findOne($data->id_store);
+                                $apiUrl = Yii::$app->params['api.domain'].Url::toRoute([
+                                    'webhook/woocommerce',
+                                    'storeid' => $store->bps_storeid,
+                                    'pkey' => $data->public_key
+                                ]);
+
+                                return $apiUrl;
+                            },
+                        ],
                         // 'secret_key',
                     ],
                 ]) ?>
