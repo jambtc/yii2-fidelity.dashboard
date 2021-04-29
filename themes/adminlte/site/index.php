@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php if (Yii::$app->user->isGuest) : ?>
-            <?= $this->render('home') ?>
+            <?= $this->render('landing-home') ?>
         <?php else: ?>
             <div class="col-lg-12">
                 <?= $this->render('dashboard', [

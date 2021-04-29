@@ -10,31 +10,39 @@ use yii\helpers\Html;
 $this->title = $name;
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
-<div class="error-page">
-    <div class="error-content" style="margin-left: auto;">
-        <h3><i class="fas fa-exclamation-triangle text-danger"></i> <?= Html::encode($name) ?></h3>
+<!-- Masthead-->
+<header class="masthead w-100">
+    <div class="container h-100">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-lg-6 align-self-end">
+                <div class="error-page">
+                    <div class="error-content" style="margin-left: auto;">
+                        <h3><i class="fas fa-exclamation-triangle text-danger"></i> <?= Html::encode($name) ?></h3>
 
-        <p>
-            <?= nl2br(Html::encode($message)) ?>
-        </p>
+                        <p>
+                            <?= nl2br(Html::encode($message)) ?>
+                        </p>
 
-        <p>
-            The above error occurred while the Web server was processing your request.
-            Please contact us if you think this is a server error. Thank you.
-            Meanwhile, you may <?= Html::a('return to dashboard', Yii::$app->homeUrl); ?>
-            or try using the search form.
-        </p>
+                        <p>
+                            The above error occurred while the Web server was processing your request.
+                            Please contact us if you think this is a server error. Thank you.
+                            Meanwhile, you may <?= Html::a('return to dashboard', Yii::$app->homeUrl); ?>
+                            or try using the search form.
+                        </p>
 
-        <form class="search-form" style="margin-right: 190px;">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search">
+                        <form class="search-form" style="margin-right: 190px;">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Search">
 
-                <div class="input-group-append">
-                    <button type="submit" name="submit" class="btn btn-danger"><i class="fas fa-search"></i>
-                    </button>
+                                <div class="input-group-append">
+                                    <button type="submit" name="submit" class="btn btn-danger"><i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
-
+</header>
