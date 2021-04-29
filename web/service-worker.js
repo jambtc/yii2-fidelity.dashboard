@@ -3,7 +3,7 @@ importScripts('src/js/idb.js');
 importScripts('src/js/idb-utility.js');
 
 var CACHE_STATIC_NAME = 'fidelity-dashboard-static-004';
-var CACHE_DYNAMIC_NAME = 'fidelity-dashboard-dynamic-002';
+var CACHE_DYNAMIC_NAME = 'fidelity-dashboard-dynamic-003';
 
 var OFFLINE_URL = 'offline.html';
 
