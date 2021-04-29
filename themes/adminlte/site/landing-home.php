@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Url;
+use app\components\Settings;
 
-
+$owner = Settings::owner();
 ?>
 
 <!-- Masthead-->
@@ -135,8 +136,8 @@ use yii\helpers\Url;
 <!-- Call to action-->
 <section class="page-section bg-dark text-white w-100">
     <div class="container text-center">
-        <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-        <a class="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
+        <h2 class="mb-4"><?= Yii::t('app','Change language') ?></h2>
+        <?= app\components\languageSwitcher::Widget() ?>
     </div>
 </section>
 <!-- Contact-->
@@ -152,12 +153,14 @@ use yii\helpers\Url;
         <div class="row">
             <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                 <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                <div>+1 (555) 123-4567</div>
+                <div>
+                    <?= isset($owner->phone) ? $owner->phone : '+1 (555) 123-4567' ?>
+                </div>
             </div>
             <div class="col-lg-4 mr-auto text-center">
                 <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
                 <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+                <a class="d-block" href="mailto:<?= Yii::$app->params['supportEmail'] ?>"><?= Yii::$app->params['supportEmail'] ?></a>
             </div>
         </div>
     </div>

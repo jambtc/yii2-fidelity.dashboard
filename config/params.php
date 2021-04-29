@@ -9,7 +9,7 @@ return [
     'website' => 'www.txlab.it',
     'adminName' => 'txLab',
     'company' => 'txLab.it',
-    'supportEmail' => $secrets['mail_username'],
+    'supportEmail' => $secrets['mail_support'],
     'encryptionFile' => dirname(__FILE__).'/encrypt.json',
     'icon-framework' => 'fa',  // Font Awesome Icon framework
 

@@ -34,7 +34,7 @@ class languageSwitcher extends Widget
 
         $languageNew = Yii::$app->request->get( 'language' );
 		if( $languageNew ) {
-			if( isset( $this->languages[ $languageNew ] ) ) {
+			//if( isset( self::$languages[ $languageNew ] ) ) {
 
 				Yii::$app->language = $languageNew;
 
@@ -44,7 +44,7 @@ class languageSwitcher extends Widget
                     'httpOnly' => true,
 				]);
 				\Yii::$app->getResponse()->getCookies()->add($cookie);
-			}
+			//}
 		}
 		elseif( \Yii::$app->getRequest()->getCookies()->has( 'language' ) ) {
 			Yii::$app->language = \Yii::$app->getRequest()->getCookies()->getValue( 'language' );
