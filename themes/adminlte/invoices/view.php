@@ -75,14 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <th><?= $model->getAttributeLabel('received') ?>:</th>
                                         <td><?= $model->received ?></td>
                                     </tr>
-                                    <tr>
-                                        <th><?= $model->getAttributeLabel('txhash') ?>:</th>
-                                        <td class="text-break"><?= $model->txhash ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th><?= $model->getAttributeLabel('message') ?>:</th>
-                                        <td class="text-break"><?= $model->message ?></td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -95,6 +88,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                             <button class="btn btn-block bg-gradient-<?= $color ?> text-capitalize"> <?= $model->status ?></button>
                         </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th><?= $model->getAttributeLabel('txhash') ?>:</th>
+                                    <td class="text-break"><?= $model->txhash ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?= $model->getAttributeLabel('message') ?>:</th>
+                                    <td class="text-break"><?= $model->message ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

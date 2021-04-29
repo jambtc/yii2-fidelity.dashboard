@@ -8,6 +8,8 @@ use app\models\search\HostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * HostController implements the CRUD actions for Host model.
@@ -28,6 +30,12 @@ class HostController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Host models.
@@ -94,7 +102,7 @@ class HostController extends Controller
         ]);
     }
 
-    
+
 
     /**
      * Finds the Host model based on its primary key value.

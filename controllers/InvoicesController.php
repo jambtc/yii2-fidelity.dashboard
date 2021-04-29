@@ -9,6 +9,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * InvoicesController implements the CRUD actions for Invoices model.
@@ -29,6 +31,12 @@ class InvoicesController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Invoices models.

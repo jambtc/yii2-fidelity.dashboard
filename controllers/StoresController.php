@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\WebApp;
 use app\models\Merchants;
+use app\components\languageSwitcher;
 
 /**
  * StoresController implements the CRUD actions for Stores model.
@@ -31,6 +32,12 @@ class StoresController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Stores models.

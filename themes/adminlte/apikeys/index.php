@@ -17,18 +17,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <p>
-                    <?= Html::a(Yii::t('app', 'Create Apikeys'), ['create'], ['class' => 'btn btn-success']) ?>
-                </p>
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+                <?= Html::a('<button type="button" class="btn btn-success float-right">
+                    <i class="fas fa-plus"></i> '. Yii::t('app', 'Add Api Keys').'
+                </button>', ['create']) ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => "{summary}\n{items}\n{pager}",
+                'tableOptions' => ['class' => 'table m-0 table-striped'],
 
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'tableOptions' => ['class' => 'table m-0 table-striped'],
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
@@ -46,13 +49,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $pos = Apikeys::findOne($data->id);
                                 return Html::a($pos->denomination, Url::toRoute(['/apikeys/view', 'id' => $id]),
                                         [
-                                            'class' => 'badge badge-success center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
+                                            'class' => 'badge badge-success center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
                                         ]
                                     );
                                 },
                         ],
-                        'public_key',
+                        [
+                            'attribute' => 'public_key',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return Html::tag('p', $data->public_key,
+                                        [
+                                            'class' => 'center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
+                                        ]
+                                    );
+                                },
+                        ],
                         [
                             'attribute' => 'id_store',
                             'format' => 'raw',
@@ -61,8 +75,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $store = Stores::findOne($data->id_store);
                                 return Html::a($store->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
                                         [
-                                            'class' => 'badge badge-primary center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
+                                            'class' => 'badge badge-primary center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
                                         ]
                                     );
                                 },
@@ -76,8 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $merchant = Merchants::findOne($data->id_merchant);
                                 return Html::a($merchant->denomination, Url::toRoute(['/merchants/view', 'id' => $id]),
                                         [
-                                            'class' => 'badge badge-primary center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
+                                            'class' => 'badge badge-primary center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
                                         ]
                                     );
                                 },
@@ -92,4 +106,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>

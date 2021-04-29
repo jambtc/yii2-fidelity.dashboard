@@ -12,12 +12,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'tableOptions' => ['class' => 'table m-0 table-striped'],
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => "{summary}\n{items}\n{pager}",
+                'tableOptions' => ['class' => 'table m-0 table-striped'],
                     'columns' => [
                         // ['class' => 'yii\grid\SerialColumn'],
 
@@ -36,4 +42,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>

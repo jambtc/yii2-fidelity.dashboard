@@ -8,6 +8,8 @@ use app\models\search\NodesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * NodesController implements the CRUD actions for Nodes model.
@@ -28,6 +30,12 @@ class NodesController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Nodes models.

@@ -8,6 +8,8 @@ use app\models\search\OwnerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * OwnerController implements the CRUD actions for Owner model.
@@ -28,6 +30,12 @@ class OwnerController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Owner models.

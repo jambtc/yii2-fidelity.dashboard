@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\WebApp;
+use app\components\languageSwitcher;
 
 /**
  * MerchantsController implements the CRUD actions for Merchants model.
@@ -29,6 +30,12 @@ class MerchantsController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Merchants models.

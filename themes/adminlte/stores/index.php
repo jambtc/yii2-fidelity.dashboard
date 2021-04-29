@@ -15,26 +15,27 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <p>
-                    <?= Html::a(Yii::t('app', 'Create Store'), ['create'], ['class' => 'btn btn-success']) ?>
-                </p>
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+                <?= Html::a('<button type="button" class="btn btn-success float-right">
+                    <i class="fas fa-plus"></i> '. Yii::t('app', 'Add Store').'
+                </button>', ['create']) ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
 
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'tableOptions' => ['class' => 'table m-0 table-striped'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => "{summary}\n{items}\n{pager}",
+                'tableOptions' => ['class' => 'table m-0 table-striped'],
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-
                         // 'id',
                         // 'id_merchant',
-
                         // 'denomination',
-
                         [
                             'attribute' => 'denomination',
                             'format' => 'raw',
@@ -42,14 +43,36 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $id = WebApp::encrypt($data->id);
                                 return Html::a($data->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
                                         [
-                                            'class' => 'badge badge-success center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
+                                            'class' => 'badge badge-success center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
                                         ]
                                     );
                                 },
                         ],
-                        'bps_storeid',
-                        'wallet_address',
+                        [
+                            'attribute' => 'bps_storeid',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return Html::tag('p', $data->bps_storeid,
+                                        [
+                                            'class' => 'center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
+                                        ]
+                                    );
+                                },
+                        ],
+                        [
+                            'attribute' => 'wallet_address',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return Html::tag('p', $data->wallet_address,
+                                        [
+                                            'class' => 'center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
+                                        ]
+                                    );
+                                },
+                        ],
                         [
                             'attribute' => 'id_blockchain',
                             'format' => 'raw',
@@ -68,8 +91,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $merchant = Merchants::findOne($data->id_merchant);
                                 return Html::a($merchant->denomination, Url::toRoute(['/merchants/view', 'id' => $id]),
                                         [
-                                            'class' => 'badge badge-primary center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
+                                            'class' => 'badge badge-primary center-block text-break text-truncate',
+                                            'style' => 'max-width: 110px;'
                                         ]
                                     );
                                 },
@@ -84,4 +107,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>

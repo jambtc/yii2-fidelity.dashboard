@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use app\models\SignupForm;
 use app\models\Merchants;
 use app\components\WebApp;
+use app\components\languageSwitcher;
+
 
 /**
  * UsersController implements the CRUD actions for Users model.
@@ -32,6 +34,12 @@ class UsersController extends Controller
             ],
         ];
     }
+
+    // public function beforeAction($action)
+	// {
+    // 	languageSwitcher::init();
+    //     return parent::beforeAction($action);
+	// }
 
     /**
 	 * Generate Api KEys for RULES ENGINE

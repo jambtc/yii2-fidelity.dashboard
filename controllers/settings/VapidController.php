@@ -8,6 +8,8 @@ use app\models\search\VapidSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * VapidController implements the CRUD actions for Vapid model.
@@ -28,6 +30,12 @@ class VapidController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Vapid models.

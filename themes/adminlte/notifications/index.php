@@ -51,62 +51,64 @@ $this->registerJs(
 );
 ?>
 
-
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <p>
-                    <?php
-                    if ($dataProvider->totalCount >0) { ?>
-                        <?= Html::button(Yii::t('app', 'Delete'), [
-                            'class' => 'btn btn-danger btn-delete',
-                            // 'data' => [
-                            //     'confirm' => Yii::t('app', 'Are you sure you want to delete selected items?'),
-                            //     'method' => 'post',
-                            // ],
-                        ]) ?>
-                    <?php } ?>
+        <div class="card card-primary px-3">
 
-                </p>
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'id' => 'notifications-form',
-                    // 'filterModel' => $searchModel,
-                    'columns' => [
-                        [
-                            'class' => 'yii\grid\CheckboxColumn',
-                            'name' => 'id',
-                        ],
-                        // ['class' => 'yii\grid\SerialColumn'],
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+                <?php  if ($dataProvider->totalCount >0) { ?>
+                    <?= Html::button('<i class="fas fa-times"></i> '. Yii::t('app', 'Delete'), [
+                    'class' => 'btn btn-danger btn-delete float-right',
+                    ]) ?>
+                <?php } ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    
 
-                        // 'id',
-                        // 'id_user',
-                        [
-                            'attribute' => 'id_user',
-                            'format' => 'raw',
-                            'value' => function ($data) {
-                                $id = WebApp::encrypt($data->id_user);
-                                $user = Users::findOne($data->id_user);
-                                return Html::a($user->username, Url::toRoute(['/users/view', 'id' => $id]),
-                                        [
-                                            'class' => 'badge badge-success center-block text-truncate',
-                                            'style' => 'max-width: 250px;'
-                                        ]
-                                    );
-                            },
-                            'visible' => (Yii::$app->user->id == 1) ? true : false,
-                        ],
-                        'notification.timestamp:datetime',
-                        'notification.type',
-                        'notification.status',
-                        'notification.description:ntext',
-                        //'url:ntext',
-                        //'price',
+                    <?= GridView::widget([
+                        'id' => 'notifications-form',
+                        'dataProvider' => $dataProvider,
+                        'layout' => "{summary}\n{items}\n{pager}",
+                        'tableOptions' => ['class' => 'table m-0 table-striped'],
+                            'columns' => [
+                                [
+                                    'class' => 'yii\grid\CheckboxColumn',
+                                    'name' => 'id',
+                                ],
+                                // ['class' => 'yii\grid\SerialColumn'],
 
-                        // ['class' => 'yii\grid\ActionColumn'],
-                    ],
-                ]); ?>
+                                // 'id',
+                                // 'id_user',
+                                [
+                                    'attribute' => 'id_user',
+                                    'format' => 'raw',
+                                    'value' => function ($data) {
+                                        $id = WebApp::encrypt($data->id_user);
+                                        $user = Users::findOne($data->id_user);
+                                        return Html::a($user->username, Url::toRoute(['/users/view', 'id' => $id]),
+                                                [
+                                                    'class' => 'badge badge-success center-block text-truncate',
+                                                    'style' => 'max-width: 250px;'
+                                                ]
+                                            );
+                                    },
+                                    'visible' => (Yii::$app->user->id == 1) ? true : false,
+                                ],
+                                'notification.timestamp:datetime',
+                                'notification.type',
+                                'notification.status',
+                                'notification.description:ntext',
+                                //'url:ntext',
+                                //'price',
+
+                                // ['class' => 'yii\grid\ActionColumn'],
+                            ],
+                        ]); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

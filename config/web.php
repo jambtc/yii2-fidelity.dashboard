@@ -8,7 +8,10 @@ $config = [
     'name' => 'Fidelity',
     'language' => 'en-US', // Specifies which language the application is targeted to
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        // 'languageSwitcher',
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -20,6 +23,9 @@ $config = [
                     '@app/views' => '@app/themes/adminlte'
                 ],
             ],
+        ],
+        'languageSwitcher' => [
+            'class' => '@app/components/languageSwitcher',
         ],
         'assetManager' => [
             'appendTimestamp' => true

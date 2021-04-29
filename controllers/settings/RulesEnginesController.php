@@ -8,6 +8,8 @@ use app\models\search\RulesEnginesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\languageSwitcher;
+
 
 /**
  * RulesEnginesController implements the CRUD actions for RulesEngines model.
@@ -28,6 +30,12 @@ class RulesEnginesController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all RulesEngines models.
@@ -94,7 +102,7 @@ class RulesEnginesController extends Controller
         ]);
     }
 
-    
+
     /**
      * Finds the RulesEngines model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

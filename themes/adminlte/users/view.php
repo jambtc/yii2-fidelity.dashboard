@@ -7,6 +7,8 @@ use yii\web\View;
 use yii\widgets\DetailView;
 use app\components\WebApp;
 use app\assets\CssAsset;
+use app\components\languageSwitcher;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Users */
@@ -60,13 +62,24 @@ CssAsset::register($this);
 
     <?php if ($model->id == Yii::$app->user->id) : ?>
         <div class="col-md-4">
-            <div class="form-group">
-                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input <?= $checked[$darkvalue] ?> type="checkbox" class="custom-control-input" id="cssmodeSwitch">
-                    <label class="custom-control-label" for="cssmodeSwitch"><?= $darkmode[$darkvalue] ?></label>
+            <div class="card card-info card-outline">
+                <div class="card-body box-profile">
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                        <input <?= $checked[$darkvalue] ?> type="checkbox" class="custom-control-input" id="cssmodeSwitch">
+                        <label class="custom-control-label" for="cssmodeSwitch"><?= $darkmode[$darkvalue] ?></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-info card-outline">
+                <div class="card-body box-profile">
+                    <?= Yii::t('app','Change language') ?>
+                    <?= languageSwitcher::Widget() ?>
                 </div>
             </div>
         </div>
+
+
+
     <?php endif; ?>
 </div>
 <div class="row">

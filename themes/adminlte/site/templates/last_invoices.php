@@ -8,7 +8,7 @@ use app\components\Rows;
 use app\components\WebApp;
 
 ?>
-<div class="card bg-dark px-3">
+<div class="card card-primary px-3">
     <div class="card-header border-transparent">
         <h3 class="card-title"><?= Yii::t('app','Latest Orders') ?></h3>
 
@@ -42,8 +42,8 @@ use app\components\WebApp;
                             $id = WebApp::encrypt($data->id);
                             return Html::a($id, Url::toRoute(['/invoices/view', 'id' => $id]),
                                     [
-                                        'class' => 'badge badge-primary center-block text-truncate',
-                                        'style' => 'max-width: 250px;'
+                                        'class' => 'badge badge-success center-block text-break text-truncate',
+                                        'style' => 'max-width: 110px;'
                                     ]
                                 );
                             },

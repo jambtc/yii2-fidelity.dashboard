@@ -18,6 +18,9 @@ use app\models\Invoices;
 use app\models\search\InvoicesSearch;
 use yii\data\ActiveDataProvider;
 
+use app\components\languageSwitcher;
+
+
 define ('NONCE_TIMEOUT', 24 * 60 * 60); // 1 day
 
 class SiteController extends Controller
@@ -47,6 +50,12 @@ class SiteController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * {@inheritdoc}

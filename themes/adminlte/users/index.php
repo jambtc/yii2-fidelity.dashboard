@@ -14,24 +14,23 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+                <?= Html::a('<button type="button" class="btn btn-success float-right">
+                    <i class="fas fa-plus"></i> '. Yii::t('app', 'Add User').'
+                </button>', ['create']) ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => "{summary}\n{items}\n{pager}",
+                'tableOptions' => ['class' => 'table m-0 table-striped'],
 
-                <p>
-                    <?= Html::a(Yii::t('app', 'Create Users'), ['create'], ['class' => 'btn btn-success']) ?>
-                </p>
 
-                <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'tableOptions' => ['class' => 'table m-0 table-striped'],
                     'columns' => [
-                        //['class' => 'yii\grid\SerialColumn'],
-
-                        //'id',
-                        // 'username',
                         [
                             'attribute' => 'username',
                             'format' => 'raw',
@@ -45,9 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 },
                         ],
-                        //'password',
-                        //'activation_code',
-                        // 'status_activation_code',
                         [
                             'attribute' => 'status_activation_code',
                             'format' => 'raw',
@@ -85,4 +81,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>

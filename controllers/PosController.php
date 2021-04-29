@@ -13,6 +13,7 @@ use app\models\Merchants;
 use yii\helpers\Json;
 use app\models\Stores;
 use yii\helpers\ArrayHelper;
+use app\components\languageSwitcher;
 
 
 /**
@@ -35,6 +36,12 @@ class PosController extends Controller
 
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
      * Lists all Pos models.

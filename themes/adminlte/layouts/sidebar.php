@@ -30,7 +30,11 @@ if (isset($_COOKIE['darkmode'])) {
                 <img src="css/images/anonymous.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="<?= Url::to(['users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]) ?>" class="d-block"><?= Yii::$app->user->identity->first_name .' '.Yii::$app->user->identity->last_name ?> </a>
+                <a href="<?= Url::to(['users/view','id'=>WebApp::encrypt(Yii::$app->user->id)]) ?>" class="d-block">
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <?= Yii::$app->user->identity->first_name .' '.Yii::$app->user->identity->last_name ?>
+                    <?php endif ?>
+                </a>
             </div>
         </div>
 

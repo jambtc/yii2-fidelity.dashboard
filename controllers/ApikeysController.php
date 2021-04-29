@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use app\components\WebApp;
 use app\models\Merchants;
+use app\components\languageSwitcher;
+
 
 /**
  * ApikeysController implements the CRUD actions for Apikeys model.
@@ -31,6 +33,12 @@ class ApikeysController extends Controller
             ],
         ];
     }
+
+    public function beforeAction($action)
+	{
+    	languageSwitcher::init();
+        return parent::beforeAction($action);
+	}
 
     /**
 	 * Generate Api KEys for RULES ENGINE

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 
+
 $darkmode = null;
 if (isset($_COOKIE['darkmode'])) {
     $cookie = \yii\helpers\Json::decode($_COOKIE['darkmode']);
@@ -24,9 +25,11 @@ if (isset($_COOKIE['darkmode'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
-        <li class="nav-item">
 
+
+
+        <!-- Navbar Search -->
+        <!-- <li class="nav-item">
             <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
@@ -42,7 +45,7 @@ if (isset($_COOKIE['darkmode'])) {
                     </div>
                 </form>
             </div>
-        </li>
+        </li> -->
 
 
         <!-- Notifications Dropdown Menu -->
@@ -53,7 +56,7 @@ if (isset($_COOKIE['darkmode'])) {
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="notifications"></div>
-                
+
             </div>
         </li>
         <li class="nav-item">
