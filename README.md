@@ -2,15 +2,15 @@
     <a href="web/css/images.logo.png" target="_blank">
         <img src="web/css/images/logo.png" height="100px">
     </a>
-    <h1 align="center">Fidelity Dashboard</h1>
+    <h1 align="center">Fidelize Dashboard</h1>
     <br>
 </p>
 
 
-Fidelity Dashboard is a new road for fidelity.
+Fidelize Dashboard is a new road for fidelity.
 
 
-### Fidelity Dashboard is based on Yii2 framework
+### Fidelize Dashboard is based on Yii2 framework
 
 
 Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for

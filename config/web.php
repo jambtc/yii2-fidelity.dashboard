@@ -4,8 +4,8 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'Fidelity',
-    'name' => 'Fidelity',
+    'id' => 'Fidelize',
+    'name' => 'Fidelize.eu',
     'language' => 'en-US', // Specifies which language the application is targeted to
     'basePath' => dirname(__DIR__),
     'bootstrap' => [

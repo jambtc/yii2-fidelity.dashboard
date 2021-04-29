@@ -65,7 +65,7 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
-                'layout' => 'main-login',
+                'layout' => 'login-page',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -108,7 +108,7 @@ class SiteController extends Controller
         }
 
         if (Yii::$app->user->isGuest)
-            $this->layout = 'main-guest';
+            $this->layout = 'landing-page';
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -127,7 +127,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'main-login';
+        $this->layout = 'login-page';
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -161,7 +161,7 @@ class SiteController extends Controller
     {
         // echo "<pre>".print_r($_POST,true)."</pre>";
  		// exit;
-        $this->layout = 'main-login';
+        $this->layout = 'login-page';
 
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
@@ -176,7 +176,7 @@ class SiteController extends Controller
 
     public function actionActivate()
     {
-        $this->layout = 'main-login';
+        $this->layout = 'login-page';
         // echo "<pre>".print_r($_POST,true)."</pre>";
         // exit;
         $id = WebApp::decrypt($_GET['id']);
@@ -254,7 +254,7 @@ class SiteController extends Controller
     */
    public function actionRequestPasswordReset()
    {
-       $this->layout = 'main-login';
+       $this->layout = 'login-page';
 
        $model = new PasswordResetRequestForm();
        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -281,7 +281,7 @@ class SiteController extends Controller
     */
    public function actionResetPassword($token)
    {
-       $this->layout = 'main-login';
+       $this->layout = 'login-page';
 
        try {
            $model = new ResetPasswordForm($token);

@@ -1,6 +1,6 @@
 {
-  "name": "Fidelity Dashboard",
-  "short_name": "Dashboard",
+  "name": "Fidelize Dashboard",
+  "short_name": "Fidelize",
   "icons": [
     {
       "src": "src/images/icons/app-icon-48x48.png",
