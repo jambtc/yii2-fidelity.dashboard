@@ -31,9 +31,7 @@ ServiceWorkerAsset::register($this);
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="landing-page/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-
-
+        <script src="/js/font-awesome/all.js" crossorigin="anonymous"></script>
 
         <?php echo $this->head() ?>
     </head>

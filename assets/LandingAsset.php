@@ -29,10 +29,11 @@ class LandingAsset extends AssetBundle
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js',
+        // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js',
         'landing-page/js/scripts.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
+        'yii\bootstrap4\BootstrapPluginAsset',
     ];
 }

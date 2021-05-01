@@ -14,7 +14,6 @@ use app\assets\ServiceWorkerAsset;
 
 LandingAsset::register($this);
 ServiceWorkerAsset::register($this);
-// \hail812\adminlte3\assets\AdminLteAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -32,7 +31,7 @@ ServiceWorkerAsset::register($this);
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="landing-page/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <script src="/js/font-awesome/all.js" crossorigin="anonymous"></script>
 
         <?php echo $this->head() ?>
     </head>
@@ -43,6 +42,15 @@ ServiceWorkerAsset::register($this);
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>"><?= Yii::$app->name ?></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>#portfolio">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= Url::to(['/site/index']) ?>"><?= Yii::t('app','Home') ?></a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
