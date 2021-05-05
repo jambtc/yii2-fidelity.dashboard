@@ -15,14 +15,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <p>
-                    <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-primary']) ?>
-                </p>
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "><?= $this->title ?></h3>
+                <?= Html::a('<button type="button" class="btn btn-success float-right">
+                    <i class="fas fa-edit"></i> '. Yii::t('app', 'Update').'
+                </button>', ['update','id' => WebApp::encrypt($model->id)]) ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+
 
                 <?= DetailView::widget([
                     'model' => $model,
+                    'options' => ['class' => 'table table-sm m-0 table-striped'],
                     'attributes' => [
                         // 'id',
                         // 'id_user',
@@ -43,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ],
                 ]) ?>
-
+                </div>
             </div>
         </div>
     </div>

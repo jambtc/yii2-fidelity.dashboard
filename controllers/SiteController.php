@@ -147,6 +147,8 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
+        // echo "<pre>".print_r($_POST,true)."</pre>";
+ 		// exit;
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -207,8 +209,8 @@ class SiteController extends Controller
             if ($delete !== null) {
                 $delete->delete();
                 Yii::$app->session->setFlash('dataOutdated');
-            } else {
-                Yii::$app->session->setFlash('userActived');
+            // } else {
+            //     Yii::$app->session->setFlash('userActived');
             }
             // return $this->refresh();
         }
@@ -226,6 +228,8 @@ class SiteController extends Controller
             $user->accessToken = '0';
             $user->status_activation_code = 1;
             $user->save();
+            Yii::$app->session->setFlash('userActived');
+
             // exit;
         }else{
             // echo "<pre>".print_r('sono diver',true)."</pre>";

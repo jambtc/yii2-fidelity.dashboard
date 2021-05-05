@@ -30,9 +30,9 @@ if (!$model->isNewRecord)
 
     <?= $form->field($model, 'url_block_explorer')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'smart_contract_abi')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'smart_contract_abi')->textArea(['maxlength' => true, 'rows'=>6]) ?>
 
-    <?= $form->field($model, 'smart_contract_bytecode')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'smart_contract_bytecode')->textArea(['maxlength' => true, 'rows' => 6]) ?>
 
     <?= $form->field($model, 'sealer_address')->textInput(['maxlength' => true]) ?>
 

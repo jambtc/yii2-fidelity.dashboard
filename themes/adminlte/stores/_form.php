@@ -50,6 +50,12 @@ $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination'
 
     <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true,'readonly' => !$model->isNewRecord])->label(Yii::t('app','Seed words')) ?>
     <p class="text-info "><?= Yii::t('app','This seed must consist of 12 words.') ?> </p>
+    <div class="callout callout-danger downloadkit" style="display: none;">
+        <p><?= Yii::t('app','It\'s time to download the recovery kit where you can write your seed.') ?></p>
+        <h5><?= Html::a(Yii::t('app','Download'), 'documents/RECOVERY_KIT.pdf', [
+            'target' => '_blank'
+            ]) ?></h5>
+    </div>
     <div class="invalid-feedback alert alert-danger" id="seed-error" ></div>
 
     <?= $form->field($model, 'wallet_address')->textInput(['maxlength' => true, 'readonly' => true]) ?>

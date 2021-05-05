@@ -27,12 +27,12 @@ $this->title = 'Activation';
                           <?php if (Yii::$app->session->hasFlash('dataOutdated')): ?>
                               <div class="alert alert-warning">
                                   <?php echo Yii::t('app','The registration time has expired.');?><br>
-                                  <?php echo Yii::t('app','You have to register again.');?>
+                                  <?php echo Yii::t('app','Maybe you have to register again.');?>
                               </div>
                                 <div class="form-row txt-center text-light mt-15">
                                   <?php echo Yii::t('app','Please, repeat the registration.');?>
-                                  <a class="btn btn-primary btn-block" href="<?php echo Url::to(['site/register']); ?>" data-loader="show">
-                                      <?php echo Yii::t('app','Sign Up');?>
+                                  <a class="btn btn-primary btn-block" href="<?php echo Url::to(['site/index']); ?>" data-loader="show">
+                                      <?php echo Yii::t('app','Go home');?>
                                   </a>
                                 </div>
                         <?php endif; ?>
@@ -40,16 +40,18 @@ $this->title = 'Activation';
                         <?php if (Yii::$app->session->hasFlash('dataNotSigned')): ?>
                             <div class="alert alert-warning">
                                 <?php echo Yii::t('app','The registration data isn\'t valid.');?><br>
-                                <?php echo Yii::t('app','You have to register again.');?>
+                                <?php echo Yii::t('app','Maybe you have to register again.');?>
                             </div>
                             <div class="form-row txt-center text-light mt-15">
                                 <?php echo Yii::t('app','Please, repeat the registration.');?>
-                                <a class="btn btn-primary btn-block" href="<?php echo Url::to(['site/register']); ?>" data-loader="show">
-                                    <?php echo Yii::t('app','Sign Up');?>
+                                <a class="btn btn-primary btn-block" href="<?php echo Url::to(['site/index']); ?>" data-loader="show">
+                                    <?php echo Yii::t('app','Go home');?>
                                 </a>
                             </div>
 
-                        <?php else: ?>
+                        <?php endif; ?>
+                        <?php if (Yii::$app->session->hasFlash('userActived')): ?>
+
                             <div class="alert alert-success">
                                 <?php echo Yii::t('app','You have registered your account successfully.');?><br>
                             </div>

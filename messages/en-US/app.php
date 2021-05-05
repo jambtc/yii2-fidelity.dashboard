@@ -241,7 +241,7 @@ return [
     'You can now login.' => '',
     'You have no messages to read.' => '',
     'You have registered your account successfully.' => '',
-    'You have to register again.' => '',
+    'Maybe you have to register again.' => '',
     'You have {n,plural,=0{read all messages.} =1{one unread message.} other{# unread messages.}}' => '',
     'You receive this email because you have registered on our site and / or you have used our services and you have given consent to receive email communications from us.' => '',
     'You will receive an email to confirm your subscription.' => '',

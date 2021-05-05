@@ -51,6 +51,7 @@ $wallet_restore = <<<JS
     var generateSeedButton = document.querySelector('.btn-generateSeed');
     generateSeedButton.addEventListener('click', function(event){
         $('.btn-generateSeed').html(yiiOptions.spinner2);
+        $('.btn-derivedKey').hide('');
 
         var password = generateEntropy(64);
     	seed = lw.keystore.generateRandomSeed(password);
@@ -142,8 +143,9 @@ $wallet_restore = <<<JS
                             $('#btn-save').prop('disabled',false);
                             $('#seed-error').addClass('alert-success');
                             $('#seed-error').show().html(yiiOptions.confirmSeedMessage+' '+address);
-                            $('.btn-derivedKey').hide('');
+                            //$('.btn-derivedKey').hide('');
                             $('.btn-generateSeed').hide('');
+                            $('.downloadkit').show();
                         }
                     )
     		});

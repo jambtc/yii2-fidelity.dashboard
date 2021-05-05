@@ -14,6 +14,9 @@ use app\assets\ApikeysAsset;
 /* @var $model app\models\Apikeys */
 /* @var $form yii\widgets\ActiveForm */
 
+if (!$model->isNewRecord)
+    $model->secret_key = \app\components\WebApp::decrypt($model->secret_key);
+
 if (Yii::$app->user->id == 1) {
     $merchants = ArrayHelper::map(Merchants::find()->all(), 'id', 'denomination');
     $merchants[0] = '';

@@ -11,7 +11,7 @@ if ($userRequestsProvider === null || $userRequestsProvider->getTotalCount() == 
     return true;
 
 ?>
-<div class="card bg-secondary px-3">
+<div class="card card-primary px-3">
     <div class="card-header border-transparent">
         <h3 class="card-title"><?= Yii::t('app','Subscriptions') ?></h3>
         <div class="card-tools">

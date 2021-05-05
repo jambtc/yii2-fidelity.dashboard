@@ -16,7 +16,7 @@ $completed = Invoices::countComplete($dataProvider);
         <p><?= Yii::t('app','Completed Orders') ?></p>
     </div>
     <div class="icon">
-        <?= Icon::show('shopping-bag') ?>
+        <?= Icon::show('inbox') ?>
     </div>
     <a href="<?= Url::to(['invoices/index']) ?>" class="small-box-footer"><?= Yii::t('app','More info') ?> <i class="fas fa-arrow-circle-right"></i></a>
 </div>

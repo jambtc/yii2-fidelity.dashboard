@@ -94,4 +94,10 @@ class Blockchains extends \yii\db\ActiveRecord
     {
         return new \app\models\query\BlockchainsQuery(get_called_class());
     }
+
+    public function beforeSave($insert) {
+        $this->sealer_private_key = \app\components\WebApp::encrypt($this->sealer_private_key);
+
+        return parent::beforeSave($insert);
+    }
 }

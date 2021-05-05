@@ -84,4 +84,10 @@ class Apikeys extends \yii\db\ActiveRecord
     {
         return new \app\models\query\ApikeysQuery(get_called_class());
     }
+
+    public function beforeSave($insert) {
+        $this->secret_key = \app\components\WebApp::encrypt($this->secret_key);
+
+        return parent::beforeSave($insert);
+    }
 }

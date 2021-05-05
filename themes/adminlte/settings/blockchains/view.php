@@ -13,14 +13,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <p>
-                    <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                </p>
-
+        <div class="card card-primary px-3">
+            <div class="card-header border-transparent ">
+                <h3 class="card-title "></h3>
+                <?= Html::a('<button type="button" class="btn btn-success float-right">
+                    <i class="fas fa-edit"></i> '. Yii::t('app', 'Update').'
+                </button>', ['update','id' => $model->id]) ?>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <div class="table-responsive">
                 <?= DetailView::widget([
                     'model' => $model,
+                    'options' => ['class' => 'table table-sm m-0 table-striped'],
                     'attributes' => [
                         // 'id',
                         // 'denomination',
@@ -53,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'sealer_private_key',
                     ],
                 ]) ?>
-
+            </div>
             </div>
         </div>
     </div>

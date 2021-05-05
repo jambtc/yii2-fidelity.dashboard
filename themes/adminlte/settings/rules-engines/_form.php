@@ -43,10 +43,11 @@ ApikeysAsset::register($this);
 
     <?= $form->field($model, 'public_key')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'secret_key')->textInput(['maxlength' => true, 'readonly'=>true]) ?>
-    <p class="alert alert-warning" id="last-chance" style="display:none;">
-        <?= Yii::t('app','This is your only chance to copy the secret key, as it will no longer be shown.') ?>
-    </p>
+
+    <div  id="last-chance" style="display:none;">
+        <?= $form->field($model, 'secret_key')->textInput(['maxlength' => true, 'readonly'=>true]) ?>
+        <p class="alert alert-warning"><?= Yii::t('app','This is your only chance to copy the secret key, as it will no longer be shown.') ?></p>
+    </div>
 
     <div class="form-group">
         <?= Html::Button(Yii::t('app', 'Generate keys'), ['class' => 'btn btn-warning', 'id' =>'btnApikeysCreate']) ?>
