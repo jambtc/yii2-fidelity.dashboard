@@ -18,16 +18,16 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="card-header border-transparent ">
                 <h3 class="card-title "><?= $this->title ?></h3>
                 <p class="float-right">
-                    <?= Html::a('<button type="button" class="btn btn-success">
-                        <i class="fas fa-edit"></i> '. Yii::t('app', 'Update').'
-                    </button>', ['update', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-success']) ?>
+                    <?= Html::a('<i class="fas fa-edit"></i> '. Yii::t('app', 'Update'),
+                            ['update', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-success']) ?>
 
                     <?php if ( (Yii::$app->user->id == 1 && $model->id == 1) || Yii::$app->user->id > 1) { ?>
                         <?= Html::a(Yii::t('app', 'Change password'), ['change-password', 'id' => WebApp::encrypt($model->id)], ['class' => 'btn btn-warning']) ?>
                     <?php } ?>
 
                     <?php if ($model->is_merchant == 0 && Yii::$app->user->id == 1) : ?>
-                        <?= Html::a(Yii::t('app', 'Make him merchant'), ['subscribe', 'id' => WebApp::encrypt($model->id)], [
+                        <?= Html::a('<i class="fas fa-wrench"></i> '.Yii::t('app', 'Make him merchant'),
+                                ['subscribe', 'id' => WebApp::encrypt($model->id)], [
                             'class' => 'btn btn-warning',
                             'data' => [
                                 'confirm' => Yii::t('app', 'Are you sure you want to make a merchant this user?'),

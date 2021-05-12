@@ -55,7 +55,7 @@ class Stores extends \yii\db\ActiveRecord
             'id_merchant' => Yii::t('app', 'Id Merchant'),
             'id_blockchain' => Yii::t('app', 'Id Blockchain'),
             'denomination' => Yii::t('app', 'Denomination'),
-            'bps_storeid' => Yii::t('app', 'Bps Storeid'),
+            'bps_storeid' => Yii::t('app', 'Store Id'),
             'wallet_address' => Yii::t('app', 'Wallet Address'),
             'derivedKey' => Yii::t('app', 'Derived Key'),
             'privateKey' => Yii::t('app', 'Private Key'),

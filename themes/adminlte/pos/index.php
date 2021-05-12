@@ -54,7 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Html::a($data->sin, Yii::$app->params['pos.domain'].Url::to(['/site/login', 'sin' => $data->sin]),
                                         [
                                             'class' => 'center-block text-break text-truncate',
-                                            'style' => 'max-width: 110px;'
+                                            'style' => 'max-width: 110px;',
+                                            'target' => '_blank'
                                         ]
                                     );
                                 },
@@ -68,7 +69,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return Html::a($store->denomination, Url::toRoute(['/stores/view', 'id' => $id]),
                                         [
                                             'class' => 'badge badge-primary center-block text-break text-truncate',
-                                            'style' => 'max-width: 110px;'
+                                            'style' => 'max-width: 110px;',
+
                                         ]
                                     );
                                 },

@@ -48,7 +48,14 @@ $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination'
     }
     ?>
 
+
+
+    <div class="form-group">
+        <?= Html::Button(Yii::t('app', 'Generate a new seed'), ['class' => 'btn btn-info btn-generateSeed']) ?>
+    </div>
+
     <?= $form->field($model, 'derivedKey')->textInput(['maxlength' => true,'readonly' => !$model->isNewRecord])->label(Yii::t('app','Seed words')) ?>
+
     <p class="text-info "><?= Yii::t('app','This seed must consist of 12 words.') ?> </p>
     <div class="callout callout-danger downloadkit" style="display: none;">
         <p><?= Yii::t('app','It\'s time to download the recovery kit where you can write your seed.') ?></p>
@@ -58,13 +65,14 @@ $blockchains = ArrayHelper::map(Blockchains::find()->all(), 'id', 'denomination'
     </div>
     <div class="invalid-feedback alert alert-danger" id="seed-error" ></div>
 
+    <div class="form-group">
+        <?= Html::Button(Yii::t('app', 'Generate address'), ['class' => 'btn btn-warning btn-derivedKey']) ?>
+    </div>
+
     <?= $form->field($model, 'wallet_address')->textInput(['maxlength' => true, 'readonly' => true]) ?>
     <?= $form->field($model, 'privateKey')->hiddenInput(['maxlength' => true])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::Button(Yii::t('app', 'Generate a new seed'), ['class' => 'btn btn-info btn-generateSeed']) ?>
-        <?= Html::Button(Yii::t('app', 'Generate address'), ['class' => 'btn btn-warning btn-derivedKey']) ?>
-
         <?= Html::submitButton(Yii::t('app', 'Save'), [
             'class' => 'btn btn-success disabled',
             'disabled'=>'disabled',
