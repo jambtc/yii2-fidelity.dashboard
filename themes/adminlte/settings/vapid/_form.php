@@ -25,7 +25,7 @@ if (!$model->isNewRecord)
 
     <?= $form->field($model, 'public_key')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'secret_key')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'secret_key')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

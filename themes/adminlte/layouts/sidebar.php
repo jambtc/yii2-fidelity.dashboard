@@ -118,7 +118,7 @@ if (isset($_COOKIE['darkmode'])) {
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
-            echo \hail812\adminlte3\widgets\Menu::widget([
+            echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => $items,
                 //[
                     // [
