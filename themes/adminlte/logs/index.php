@@ -23,7 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="table-responsive">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
                 'layout' => "{summary}\n{items}\n{pager}",
+
                 'tableOptions' => ['class' => 'table m-0 table-striped'],
 
                     'columns' => [
@@ -35,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'value' => function ($data) {
                                 return Html::a(
-                                    \Yii::$app->formatter->asDatetime($data->timestamp,'long'),
+                                    \Yii::$app->formatter->asDatetime($data->timestamp),
                                     Url::toRoute(['/logs/view', 'id' => $data->id]),
                                     [
-                                        'class' => 'badge badge-success center-block text-truncate',
-                                        'style' => 'max-width: 250px;'
+                                        'class' => 'btn btn-success center-block text-truncate',
+                                        // 'style' => 'max-width: 250px;'
                                     ]
                                     );
                                 },
@@ -58,6 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'value' => function ($data) {
                                 return $data->description;
                             },
+                            'contentOptions' => ['class' => 'text-primary'],
+
                         ],
                         'die',
 

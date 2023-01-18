@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'attributes' => [
                         'id',
+                        'timestamp',
                         'timestamp:datetime',
                         'id_user',
                         'remote_address',
@@ -26,7 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         'app',
                         'controller',
                         'action',
-                        'description:ntext',
+                        // 'description:ntext',
+                        [
+                            'attribute' => 'description',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return $data->description;
+                            },
+                            'contentOptions' => ['class' => 'text-primary'],
+
+                        ],
                         'die',
                     ],
                 ]) ?>

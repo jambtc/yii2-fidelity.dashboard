@@ -44,27 +44,13 @@ class LogsController extends Controller
      */
     public function actionIndex()
     {
-        //$searchModel = new LogsSearch();
-        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $query = Logs::find()
-            ->orderBy(['id' => SORT_DESC]);
-
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-            // 'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
-        ]);
-
-        // $dataProvider->setSort([
-        //     'defaultOrder' => ['id'=>SORT_DESC],
-        // ]);
+        $searchModel = new LogsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->sort->defaultOrder = ['id' => SORT_DESC];
+        $dataProvider->pagination->pageSize = 100;
 
         return $this->render('index', [
-            //'searchModel' => $searchModel,
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
